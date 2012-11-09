@@ -1,5 +1,7 @@
 package com.db.ncsu;
 
+import java.util.Scanner;
+
 import com.db.ncsu.command.Command;
 import com.db.ncsu.user.User;
 import com.db.ncsu.view.CommandView;
@@ -8,22 +10,31 @@ public class Main {
 
 	public static void main(String args[])
 	{
-		//prentend we picked A sales
+		System.out.println("Enter your username");
+		Scanner scanner = new Scanner(System.in);
+		String name = scanner.nextLine();
+
+		// Functions Lookup the type of user - Present a sales user		
 		User user = new User();
-		Command[] userCommands = user.getSalesCommands();
+		System.out.println("Enter a command");
+		
+		// Look user up and give correct screen
+		///user.billingCommands() or stocking etc..
+
+		Command[] userCommands = user.getSalesCommands();  
+		int i = 1;
+		for (Command command : userCommands)
+		{
+			System.out.println(i + " "+ command.getCommandName());
+			i++;
+		}
+		int choosenCommand = scanner.nextInt();
+		Command commandToExecute = userCommands[choosenCommand-1];		
 		CommandView commandView = new CommandView();
-		commandView.showCommand(menu(userCommands));				
-		//wait for input (number)		
+		commandView.enterParametersAndExeute(commandToExecute);				
+		
+
 	}
 
-	
-	public static Command menu(Command[] commands)
-	{
-		for (Command command : commands)
-		{
-			//print it out
-		}
-		return commands[0];		
-	}
 	
 }

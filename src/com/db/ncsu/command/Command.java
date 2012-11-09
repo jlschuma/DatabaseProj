@@ -5,14 +5,12 @@ public abstract class Command {
 	public abstract CommandArgument[] getArguments();
 	
 	public  void execute(CommandArgument[] args){
+		//GET CALLED EVERYTIME 		
 		if (!validate(args)){
 			//handle bad args
 		}
 		run(args);
 	}
-	
-	public  abstract void run(CommandArgument[] args);
-
 	
 	
 	protected boolean validate(CommandArgument[] args)
@@ -22,6 +20,7 @@ public abstract class Command {
 	}
 
 	public abstract String getCommandName();
+	public  abstract void run(CommandArgument[] args);
 	
 	
 }

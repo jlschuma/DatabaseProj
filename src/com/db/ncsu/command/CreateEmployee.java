@@ -1,7 +1,6 @@
 package com.db.ncsu.command;
 
-public class CreateAccount extends Command {
-
+public class CreateEmployee extends Command {
 	@Override
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[3];
@@ -13,18 +12,13 @@ public class CreateAccount extends Command {
 
 	@Override
 	public void run(CommandArgument[] args) {
-		System.out.println("THIS LINE WOULD CREATE AN COMMAND FORM THE ARGS");
-		
+		System.out.println("THIS LINE WOULD CREATE AN EMPLOYEE FORM THE ARGS");
 		
 	}
 
 	@Override
 	public String getCommandName() {
-		return "Create a new Account";
+		return "Create a new Employee";
 	}
-	
-	
-	
-
 	
 }

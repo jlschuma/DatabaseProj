@@ -6,12 +6,14 @@ public class CommandArgument {
 	private String type;
 	private String description;
 	private Object value;
+	private boolean promptUser;
 	
-	public CommandArgument(String name, String type, String description)
+	public CommandArgument(String name, String type, String description, boolean promptUser)
 	{
 		this.name = name;
 		this.type = type;
 		this.description = description;
+		this.promptUser = promptUser;
 	}
 	
 	public String getName() {
