@@ -14,7 +14,7 @@ public  class User {
 	
 	public User()
 	{
-		salesCommands = new Command[]{ new CreateAccount(), new CheckStoreInventory()};
+		salesCommands = new Command[]{ new CreateAccount(), new CreateEmployee(), new CheckStoreInventory()};
 		billingCommands = new Command[]{ new CreateAccount()};
 		managerCommands = new Command[]{ new CreateEmployee()};
 
