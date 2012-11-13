@@ -2,10 +2,14 @@ package com.db.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ParameterMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 
 import com.db.ncsu.command.CommandArgument;
@@ -24,6 +28,8 @@ public class DatabaseManager {
 
 	
 	private static DatabaseManager dm = new DatabaseManager();
+	static SimpleDateFormat format =
+            new SimpleDateFormat("MM/dd/yy");
 	
 	private DatabaseManager()
 	{
@@ -32,33 +38,83 @@ public class DatabaseManager {
 	
 	
 	
-	public static boolean runInsertPreparedStatement(String sql, CommandArgument[] args)
+	public static boolean runPreparedStatement(String sql, CommandArgument[] args, boolean isSelect)
 	{		
+		boolean result = false;
 		try {
-			Statement stat =  connection.createStatement();
+			PreparedStatement stat =  connection.prepareStatement(sql);
 			
-			//.prepareStatement(sql);
+			int i=1;
 			for (CommandArgument arg : args)
 			{
 				if (arg.getType().equals("Int"))
 				{
-					sql = sql.replaceFirst(Pattern.quote("?"), arg.getValue().toString());
+					stat.setInt(i, Integer.parseInt(arg.getValue().toString()));
+					//sql = sql.replaceFirst(Pattern.quote("?"), arg.getValue().toString());
 				}
 				else if (arg.getType().equals("String"))
 				{
-					sql = sql.replaceFirst(Pattern.quote("?"), "'"+arg.getValue().toString()+"'");
+					stat.setString(i, arg.getValue().toString());
+					///sql = sql.replaceFirst(Pattern.quote("?"), "'"+arg.getValue().toString()+"'");
+				}
+				else if (arg.getType().equals("Date"))
+				{
+					java.util.Date d = null;
+					try {
+						d = format.parse(arg.getValue().toString());
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					java.sql.Date d2 = new java.sql.Date(d.getTime());
+					stat.setDate(i, d2);
+					///sql = sql.replaceFirst(Pattern.quote("?"), "'"+arg.getValue().toString()+"'");
 				}
 				
 				else System.out.println("UNKNOWN TYPE");
+				i++;
 			}
-			System.out.println(sql);			
-			return stat.execute(sql);
-						
+			if (!isSelect)
+			{
+				result =  stat.execute();
+			}
+			else
+			{
+				ResultSet re = stat.executeQuery();
+				ResultSetMetaData meta = re.getMetaData();
+			    int cols = meta.getColumnCount();
+
+			    // we dump the column information about the result set
+			    for (i=1; i <= cols; i++)
+			    {
+			        System.out.print(meta.getColumnName(i)+ "   ");
+			    }
+			    System.out.println();
+
+			    // and finally, we dump the result set
+			    int cnt = 1;
+			    while(re.next())
+			    {
+			        System.out.print("\n "+cnt+" : ");
+			        for (i=1; i <= cols; i++) {
+			            System.out.print(re.getString(i)+"\t");
+			        }
+			        cnt++;
+			    }
+			    result = true;
+			    
+			}
+			stat.close();
+			return result;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
+	
+	
+
+	
 	
 	
 	private static void initialize() {

@@ -8,9 +8,17 @@ import com.db.ncsu.view.CommandView;
 
 public class Main {
 
+	
+	public static String userId;
+	public static String userStoreId;
+	
 	public static void main(String args[])
 	{
 		System.out.println("Enter your username");
+
+		String userId = "1";
+		String storeId = "2";
+		
 		Scanner scanner = new Scanner(System.in);
 		String name = scanner.nextLine();
 
