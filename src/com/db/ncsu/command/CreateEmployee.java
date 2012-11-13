@@ -24,7 +24,7 @@ public class CreateEmployee extends Command {
 		//INSERT INTO Staff(id, storeId, salary, phoneNumber, name, age, gender, title, department, address)
 		String sql = "INSERT INTO Staff(id, storeId, salary, phoneNumber, name, age, gender, title, department, address) VALUES(staff_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		DatabaseManager.runPreparedStatement(sql,args,false);
-			
+		System.out.println("EMPLOYEE ADDED!!!");	
 	}
 
 	@Override

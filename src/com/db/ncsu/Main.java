@@ -24,24 +24,27 @@ public class Main {
 
 		// Functions Lookup the type of user - Present a sales user		
 		User user = new User();
-		System.out.println("Enter a command");
 		
-		// Look user up and give correct screen
-		///user.billingCommands() or stocking etc..
-
-		Command[] userCommands = user.getSalesCommands();  
-		int i = 1;
-		for (Command command : userCommands)
+		while (true)
 		{
-			System.out.println(i + " "+ command.getCommandName());
-			i++;
-		}
-		int choosenCommand = scanner.nextInt();
-		Command commandToExecute = userCommands[choosenCommand-1];		
-		CommandView commandView = new CommandView();
-		commandView.enterParametersAndExeute(commandToExecute);				
+			System.out.println("Enter a command");
 		
+			// Look user up and give correct screen
+			///user.billingCommands() or stocking etc..
 
+			Command[] userCommands = user.getSalesCommands();  
+			int i = 1;
+			for (Command command : userCommands)
+			{
+				System.out.println(i + " "+ command.getCommandName());
+				i++;
+			}
+			int choosenCommand = scanner.nextInt();
+			Command commandToExecute = userCommands[choosenCommand-1];		
+			CommandView commandView = new CommandView();
+			commandView.enterParametersAndExeute(commandToExecute);				
+		
+		}
 	}
 
 	

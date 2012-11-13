@@ -63,7 +63,6 @@ public class DatabaseManager {
 					try {
 						d = format.parse(arg.getValue().toString());
 					} catch (ParseException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					java.sql.Date d2 = new java.sql.Date(d.getTime());
@@ -76,7 +75,8 @@ public class DatabaseManager {
 			}
 			if (!isSelect)
 			{
-				result =  stat.execute();
+				stat.executeUpdate();
+				result = true;
 			}
 			else
 			{
@@ -85,22 +85,23 @@ public class DatabaseManager {
 			    int cols = meta.getColumnCount();
 
 			    // we dump the column information about the result set
+		        System.out.print("Row Number\t");
 			    for (i=1; i <= cols; i++)
 			    {
-			        System.out.print(meta.getColumnName(i)+ "   ");
+			        System.out.print(meta.getColumnName(i)+ "\t");
 			    }
-			    System.out.println();
 
 			    // and finally, we dump the result set
-			    int cnt = 1;
+			    int cnt = 1;			   
 			    while(re.next())
 			    {
-			        System.out.print("\n "+cnt+" : ");
+			        System.out.print("\n"+cnt+"\t\t");
 			        for (i=1; i <= cols; i++) {
 			            System.out.print(re.getString(i)+"\t");
 			        }
 			        cnt++;
 			    }
+			    System.out.println();
 			    result = true;
 			    
 			}
@@ -121,12 +122,6 @@ public class DatabaseManager {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connection = DriverManager.getConnection(jdbcURL, user, password);
-			statement = connection.createStatement();
-
-			//	statement.executeUpdate("DROP TABLE Cats");
-			//statement
-			//		.executeUpdate("INSERT INTO Cats VALUES ('Oscar', 'Egyptian Mau',"
-
 	} catch (SQLException e) {
 		e.printStackTrace();
 	} catch (ClassNotFoundException e) {
