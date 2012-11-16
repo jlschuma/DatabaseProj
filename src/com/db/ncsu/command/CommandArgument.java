@@ -1,5 +1,8 @@
 package com.db.ncsu.command;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class CommandArgument {
 
 	private String name;
@@ -47,6 +50,56 @@ public class CommandArgument {
 
 	public void setPromptUser(boolean promptUser) {
 		this.promptUser = promptUser;
+	}
+	
+	public boolean validate(){
+		if (this.getType().equals("Int"))
+		{
+			try{
+				Integer.parseInt(this.value.toString());
+			} catch (NumberFormatException e) {
+				System.out.println("Incorrect format for parameter" + this.name);
+				System.out.println("Integer expected.");
+				return false;
+			}
+			return true;
+		}
+		else if (this.getType().equals("String"))
+		{
+			// Don't do anything, anything that can be typed into the console is a string.
+			return true;
+		}
+		else if (this.getType().equals("Float"))
+		{
+			try{
+				Float.parseFloat(this.value.toString());
+			} catch (NumberFormatException e) {
+				System.out.println("Incorrect format for parameter" + this.name);
+				System.out.println("Decimal number expected.");
+				return false;
+			}
+			return true;
+		}
+		else if (this.getType().equals("Date"))
+		{
+			SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy");
+	 
+			try {
+	 
+				//If not valid, it will throw a ParseException.
+				format.parse(this.getValue().toString());
+	 
+			} catch (ParseException e) {
+	 
+				System.out.println("Incorrect format for parameter" + this.name);
+				System.out.println("Date in the format MM/dd/yy expected.");
+				return false;
+			}
+			return true;
+		}
+		
+		else System.out.println("UNKNOWN TYPE");
+		return false;
 	}
 	
 	

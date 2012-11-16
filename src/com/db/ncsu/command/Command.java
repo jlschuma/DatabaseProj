@@ -10,6 +10,8 @@ public abstract class Command {
 		//GET CALLED EVERYTIME 		
 		if (!validate(args)){
 			//handle bad args
+			System.out.println("Please try again.");
+			return;
 		}
 		run(args);
 	}
@@ -32,6 +34,10 @@ public abstract class Command {
 	protected boolean validate(CommandArgument[] args)
 	{
 		//test they are type of
+		for(CommandArgument arg : args){
+			if(!arg.validate())
+				return false;
+		}
 		return true;
 	}
 
