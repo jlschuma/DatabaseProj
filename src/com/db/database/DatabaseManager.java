@@ -1,6 +1,7 @@
 package com.db.database;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ParameterMetaData;
 import java.sql.PreparedStatement;
@@ -36,43 +37,159 @@ public class DatabaseManager {
 		initialize();	
 	}
 	
+	private static PreparedStatement setPreparedStatementArgument(PreparedStatement stat, CommandArgument arg, int spot) throws NumberFormatException, SQLException	
+	{	
+		
+			if (arg.getType().equals("Int"))
+			{
+				stat.setInt(spot, Integer.parseInt(arg.getValue().toString()));
+				//sql = sql.replaceFirst(Pattern.quote("?"), arg.getValue().toString());
+			}
+			else if (arg.getType().equals("String"))
+			{
+				stat.setString(spot, arg.getValue().toString());
+				///sql = sql.replaceFirst(Pattern.quote("?"), "'"+arg.getValue().toString()+"'");
+			}
+			else if (arg.getType().equals("Float"))
+			{
+				stat.setFloat(spot, Float.parseFloat(arg.getValue().toString()));
+			}
+			else if (arg.getType().equals("Date"))
+			{
+				java.util.Date d = null;
+				try {
+					d = format.parse(arg.getValue().toString());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				java.sql.Date d2 = new java.sql.Date(d.getTime());
+				stat.setDate(spot, d2);
+				///sql = sql.replaceFirst(Pattern.quote("?"), "'"+arg.getValue().toString()+"'");
+			}
+			
+			else System.out.println("UNKNOWN TYPE");
+		return stat;
+	}
+	
+	
+	public static boolean checkUpdate(String sql, CommandArgument[] args, CommandArgument[] selectArgs)
+	{
+		PreparedStatement stat = null;
+		try {
+			stat = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			
+			for (int i =0; i < args.length; i++)
+				stat = setPreparedStatementArgument(stat,args[i],i+1);
+		
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}				
+	
+		int count = 0;
+		try {
+			ResultSet re = stat.executeQuery();
+			ResultSetMetaData meta = re.getMetaData();
+		    int cols = meta.getColumnCount();
+
+		    // and finally, we dump the result set
+		    while(re.next())
+		    {
+		        for (int i=0; i < cols; i++) {
+		        	if (selectArgs[i].getType().equals("Date"))
+		        	{
+		        		java.util.Date newDate = new Date(re.getDate(i+1).getTime());
+		        		selectArgs[i].setValue(format.format(newDate));
+		        	}
+		        	else
+		        	{
+		        		selectArgs[i].setValue(re.getString(i+1));
+		        	}
+		        }
+		        count++;
+		    }
+		    			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		if (count == 1)
+		{	
+			return true;
+		
+		}
+		return false;
+	}
+	
+	public static boolean executeUpdate(String sql, CommandArgument[] args, CommandArgument[] selectArgs)
+	{
+		PreparedStatement stat = null;
+		try {
+			stat = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			
+			
+		int i=0;
+		for (; i < selectArgs.length; i++)
+		{
+			stat = setPreparedStatementArgument(stat,selectArgs[i],i+1);			
+		}
+		for (int i2 =0; i2 < args.length; i2++)
+		{
+			stat = setPreparedStatementArgument(stat,args[i2],i+1);			
+			i++;
+		}
+
+		
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}				
+	
+		int count = 0;
+		try {
+			count = stat.executeUpdate();			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		
+		if (count == 1)
+			return true;
+		return false;
+	}
 	
 	
 	public static boolean runPreparedStatement(String sql, CommandArgument[] args, boolean isSelect)
 	{		
 		boolean result = false;
 		try {
+
 			PreparedStatement stat =  connection.prepareStatement(sql);
 			
 			int i=1;
 			for (CommandArgument arg : args)
 			{
-				if (arg.getType().equals("Int"))
-				{
-					stat.setInt(i, Integer.parseInt(arg.getValue().toString()));
-					//sql = sql.replaceFirst(Pattern.quote("?"), arg.getValue().toString());
-				}
-				else if (arg.getType().equals("String"))
-				{
-					stat.setString(i, arg.getValue().toString());
-					///sql = sql.replaceFirst(Pattern.quote("?"), "'"+arg.getValue().toString()+"'");
-				}
-				else if (arg.getType().equals("Date"))
-				{
-					java.util.Date d = null;
-					try {
-						d = format.parse(arg.getValue().toString());
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-					java.sql.Date d2 = new java.sql.Date(d.getTime());
-					stat.setDate(i, d2);
-					///sql = sql.replaceFirst(Pattern.quote("?"), "'"+arg.getValue().toString()+"'");
-				}
-				
-				else System.out.println("UNKNOWN TYPE");
+				stat = setPreparedStatementArgument(stat,arg,i);
 				i++;
 			}
+			
 			if (!isSelect)
 			{
 				stat.executeUpdate();

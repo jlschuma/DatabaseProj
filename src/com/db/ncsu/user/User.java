@@ -4,7 +4,7 @@ import com.db.ncsu.command.CheckStoreInventory;
 import com.db.ncsu.command.Command;
 import com.db.ncsu.command.CreateAccount;
 import com.db.ncsu.command.CreateEmployee;
-import com.db.ncsu.command.ShowEmployees;
+import com.db.ncsu.command.*;
 
 public  class User {
 
@@ -15,7 +15,7 @@ public  class User {
 	
 	public User()
 	{
-		salesCommands = new Command[]{ new CreateAccount(), new CreateEmployee(), new CheckStoreInventory(), new ShowEmployees()};
+		salesCommands = new Command[]{ new UpdateMerchandise(), new UpdateAccount(), new CreateAccount(), new CreateEmployee(), new CheckStoreInventory(), new ShowEmployees()};
 		billingCommands = new Command[]{ new CreateAccount()};
 		managerCommands = new Command[]{ new CreateEmployee()};
 
