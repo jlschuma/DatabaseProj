@@ -13,7 +13,7 @@ public class CommandArgument {
 		this.name = name;
 		this.type = type;
 		this.description = description;
-		this.promptUser = promptUser;
+		this.setPromptUser(promptUser);
 	}
 	
 	public String getName() {
@@ -39,6 +39,14 @@ public class CommandArgument {
 	}
 	public void setValue(Object value) {
 		this.value = value;
+	}
+
+	public boolean isPromptUser() {
+		return promptUser;
+	}
+
+	public void setPromptUser(boolean promptUser) {
+		this.promptUser = promptUser;
 	}
 	
 	

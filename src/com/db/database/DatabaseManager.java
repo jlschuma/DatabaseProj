@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import com.db.ncsu.command.CommandArgument;
@@ -130,6 +131,25 @@ public class DatabaseManager {
 		return false;
 	}
 	
+	public static int getSeqVal(String sql)
+	{
+		try {
+			PreparedStatement stat = connection.prepareStatement(sql);
+			ResultSet re = stat.executeQuery();
+			while (re.next())
+			{
+				return re.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
+	
+	
 	public static boolean executeUpdate(String sql, CommandArgument[] args, CommandArgument[] selectArgs)
 	{
 		PreparedStatement stat = null;
@@ -173,6 +193,68 @@ public class DatabaseManager {
 		if (count == 1)
 			return true;
 		return false;
+	}
+
+	
+	public static boolean runTransaction(ArrayList<PreparedStatement> preparedStatements)
+	{
+		//turn autocommit off
+		try {
+			connection.setAutoCommit(false);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+
+		//run all queries
+		for(PreparedStatement preparedStatement : preparedStatements)
+		{
+			try {
+				preparedStatement.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+		}
+		//set back to true state
+		try {
+			connection.commit();
+			connection.setAutoCommit(true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public static PreparedStatement makePreparedStatement(String sql, CommandArgument[] args)
+	{
+		PreparedStatement stat = null;
+		try {
+			stat = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int i=1;
+		for (CommandArgument arg : args)
+		{
+			try {
+				stat = setPreparedStatementArgument(stat,arg,i);
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			i++;
+		}
+		return stat;
 	}
 	
 	

@@ -16,8 +16,8 @@ public class Main {
 	{
 		System.out.println("Enter your username");
 
-		String userId = "1";
-		String storeId = "2";
+	    userId = "1";
+	    userStoreId = "2";
 		
 		Scanner scanner = new Scanner(System.in);
 		String name = scanner.nextLine();
