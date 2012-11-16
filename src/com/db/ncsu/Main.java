@@ -39,10 +39,22 @@ public class Main {
 				System.out.println(i + " "+ command.getCommandName());
 				i++;
 			}
-			int choosenCommand = scanner.nextInt();
-			Command commandToExecute = userCommands[choosenCommand-1];		
-			CommandView commandView = new CommandView();
-			commandView.enterParametersAndExeute(commandToExecute);				
+			String chosenCommand = scanner.nextLine();
+			int choosenCommand = -1;
+			try{
+				choosenCommand = Integer.parseInt(chosenCommand);
+			} catch (NumberFormatException e) {
+				System.out.println("Incorrect input. Please enter the number of an option.");
+				continue;
+			}
+			if(choosenCommand <= userCommands.length && choosenCommand > 0){
+				Command commandToExecute = userCommands[choosenCommand-1];
+				CommandView commandView = new CommandView();
+				commandView.enterParametersAndExeute(commandToExecute);
+			}
+			else{
+				System.out.println("Option number does not exist. Please try again.");
+			}
 		
 		}
 	}
