@@ -1,6 +1,5 @@
-, new ShowStore()package com.db.ncsu.user;
+package com.db.ncsu.user;
 
-import com.db.ncsu.command.CheckStoreInventory;
 import com.db.ncsu.command.Command;
 import com.db.ncsu.command.CreateAccount;
 import com.db.ncsu.command.CreateEmployee;
