@@ -14,7 +14,7 @@ public class ViewAllCustomerSpecialOrders extends Command {
 		//SELECT storeID, status, specialOrderID, merchandiseID, quantity, price
 		//FROM SpecialOrder o, SpecialOrderItems oi
 		//WHERE o.id = oi.specialOrderID AND customerID = 3
-		String sql = "SELECT storeID, specialOrderID, SUM(quantity * price) AS Balance" +
+		String sql = "SELECT storeID, specialOrderID, SUM(quantity * price) AS Balance " +
 				"FROM SpecialOrder o, SpecialOrderItems oi " +
 				"WHERE o.id = oi.specialOrderID AND customerID = ? " +
 				"GROUP BY storeID, specialOrderID";
