@@ -1,4 +1,4 @@
-package com.db.ncsu.user;
+, new ShowStore()package com.db.ncsu.user;
 
 import com.db.ncsu.command.CheckStoreInventory;
 import com.db.ncsu.command.Command;
@@ -15,7 +15,7 @@ public  class User {
 	
 	public User()
 	{
-		salesCommands = new Command[]{ new InsertSpecialOrder(), new UpdateMerchandise(), new UpdateAccount(), new CreateAccount(), new CreateEmployee(), new ShowEmployees(), new CreateVendor(), new CreateStore(), new CreateMerchandise(), new AddVendorPayment(), new AddStoreItem(), new ReviewStoreInventory(), new CheckItemAtStore(), new CheckMerchandiseAvailability()};
+		salesCommands = new Command[]{ new InsertSpecialOrder(), new UpdateMerchandise(), new UpdateAccount(), new CreateAccount(), new CreateEmployee(), new ShowEmployees(), new CreateVendor(), new CreateStore(), new CreateMerchandise(), new AddVendorPayment(), new AddStoreItem(), new ReviewStoreInventory(), new CheckItemAtStore(), new CheckMerchandiseAvailability(), new ShowStore(), new ReviewBills(), new ViewAllCustomerSpecialOrders(), new GenerateCustomerPurchaseHistory(), new GenerateVendorPurchaseHistory(), new ReviewASpecialOrder(), new VendorStorePurchaseHistory(), new CustomerStorePurchaseHistory(), new ShowTotalInventory(), new ShowAllCustomerBills(), new ShowAllVendorBills()};
 		billingCommands = new Command[]{ new CreateAccount()};
 		managerCommands = new Command[]{ new CreateEmployee()};
 
