@@ -42,12 +42,20 @@ public class DatabaseManager {
 	{	
 		    if (arg.getType().equals("Int"))
 			{
+		    	
 				stat.setInt(spot, Integer.parseInt(arg.getValue().toString()));
 				//sql = sql.replaceFirst(Pattern.quote("?"), arg.getValue().toString());
 			}
 			else if (arg.getType().equals("String"))
 			{
-				stat.setString(spot, arg.getValue().toString());
+				if (arg.getValue() == null)
+				{
+					stat.setString(spot, null);
+				}
+				else
+				{
+					stat.setString(spot, arg.getValue().toString());
+				}
 				///sql = sql.replaceFirst(Pattern.quote("?"), "'"+arg.getValue().toString()+"'");
 			}
 			else if (arg.getType().equals("Float"))
@@ -56,7 +64,7 @@ public class DatabaseManager {
 			}
 			else if (arg.getType().equals("Date"))
 			{
-				if (arg.getValue().equals("NULL"))
+				if (arg.getValue() == null)
 				{
 					stat.setDate(spot, null);
 				}
@@ -115,7 +123,7 @@ public class DatabaseManager {
 		        	{
 		        		if (re.getDate(i+1) == null)
 		        		{
-		        			selectArgs[i].setValue("NULL");		    		        			
+		        			//Don't set a value
 		        		}
 		        		else
 		        		{
