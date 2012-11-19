@@ -14,7 +14,7 @@ public class CreateEmployee extends Command {
 		args[4] = new CommandArgument("age","Int","Age",true);
 		args[5] = new CommandArgument("gender","String","Gender",true);
 		args[6] = new CommandArgument("title","String","Title",true);
-		args[7] = new CommandArgument("deparment","String","Department",true);
+		args[7] = new CommandArgument("deparment","String","Department  (Franchise Manager, Manager, Billing, Stocking, Staff)",true);
 		args[8] = new CommandArgument("address","String","Address",true);		
 		return args;
 	}

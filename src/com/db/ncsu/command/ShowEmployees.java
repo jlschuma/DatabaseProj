@@ -13,7 +13,7 @@ public class ShowEmployees extends Command {
 	@Override
 	public void run(CommandArgument[] args) {
 		//Select * from Staff
-		String sql = "Select * from Staff";
+		String sql = "Select * from Staff order by StoreId, Department";
 		DatabaseManager.runPreparedStatement(sql,args,true);
 			
 	}
