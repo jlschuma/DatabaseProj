@@ -2,6 +2,7 @@ package com.db.ncsu;
 
 import java.util.Scanner;
 
+import com.db.database.DatabaseManager;
 import com.db.ncsu.command.Command;
 import com.db.ncsu.user.User;
 import com.db.ncsu.view.CommandView;
@@ -9,30 +10,41 @@ import com.db.ncsu.view.CommandView;
 public class Main {
 
 	
-	public static String userId;
-	public static String userStoreId;
+	public static int userId = 1;
+	public static int userStoreId = 1;
 	
 	public static void main(String args[])
 	{
-		System.out.println("Enter your username");
+		System.out.println("Enter your Id");
 
-	    userId = "1";
-	    userStoreId = "2";
 		
+	    
 		Scanner scanner = new Scanner(System.in);
-		String name = scanner.nextLine();
-
+		String id = scanner.nextLine();
+	    
+		
 		// Functions Lookup the type of user - Present a sales user		
 		User user = new User();
+	
+		
+		String department = "Franchise";
+		//Look up id, set userId, setstoreId, bring back department
+		//String department = DatabaseManager.lookUpUser(id);
+		//public static int userId = 1;
+		//public static int userStoreId = 1
+				
+		Command[] userCommands = null;
+		
+		if (department.equals("Franchise"))
+		{
+			userCommands = user.getFranchiseCommands();  
+		}
 		
 		while (true)
 		{
+			System.out.println("**** "+department + " Commands ****");
 			System.out.println("Enter a command");
 		
-			// Look user up and give correct screen
-			///user.billingCommands() or stocking etc..
-
-			Command[] userCommands = user.getSalesCommands();  
 			int i = 1;
 			for (Command command : userCommands)
 			{

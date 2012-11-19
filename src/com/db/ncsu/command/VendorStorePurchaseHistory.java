@@ -8,7 +8,6 @@ public class VendorStorePurchaseHistory extends Command {
 		args[0] = new CommandArgument("From Date","Date","From Date (MM/dd/yy)",true);
 		args[1] = new CommandArgument("To Date","Date","To Date (MM/dd/yy)",true);
 		args[2] = new CommandArgument("Store ID","Int","Store ID",true);
-		//args[3] = new CommandArgument("Vendor ID", "Int", "Vendor ID", true);
 		return args;
 	}
 

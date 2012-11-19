@@ -20,7 +20,7 @@ public class UpdateEmployee extends Command {
 		selectArgs[4] = new CommandArgument("Age","Int","Age",true);
 		selectArgs[5] = new CommandArgument("Gender","String","Gender",true);
 		selectArgs[6] = new CommandArgument("Title","String","Title",true);
-		selectArgs[7] = new CommandArgument("Department","String","Department (Owner, Manager, Billing, Stocking, Staff",true);
+		selectArgs[7] = new CommandArgument("Department","String","Department (Franchise Manager, Manager, Billing, Stocking, Staff)",true);
 		selectArgs[8] = new CommandArgument("Address","String","Address",true);
 		
 		String selectSQL = "select storeID, salary, phoneNumber, name, age, gender, title, " +

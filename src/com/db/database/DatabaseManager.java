@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import com.db.ncsu.Main;
 import com.db.ncsu.command.CommandArgument;
 
 public class DatabaseManager {
@@ -278,6 +279,26 @@ public class DatabaseManager {
 		return stat;
 	}
 	
+	
+	public static String lookUpUser(String id)
+	{
+		try {
+			PreparedStatement stat =  connection.prepareStatement("Select department,storeId from Staff where id = ?");
+			stat.setString(1, id);
+			ResultSet re = stat.executeQuery();
+			if (re.next())
+			{
+				Main.userId = re.getInt(2);				
+				Main.userStoreId = re.getInt(1);
+				return re.getString(0);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "";
+	}
 	
 	public static boolean runPreparedStatement(String sql, CommandArgument[] args, boolean isSelect)
 	{		
