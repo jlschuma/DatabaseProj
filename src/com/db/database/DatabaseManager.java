@@ -40,8 +40,7 @@ public class DatabaseManager {
 	
 	private static PreparedStatement setPreparedStatementArgument(PreparedStatement stat, CommandArgument arg, int spot) throws NumberFormatException, SQLException	
 	{	
-		
-			if (arg.getType().equals("Int"))
+		    if (arg.getType().equals("Int"))
 			{
 				stat.setInt(spot, Integer.parseInt(arg.getValue().toString()));
 				//sql = sql.replaceFirst(Pattern.quote("?"), arg.getValue().toString());
@@ -57,15 +56,22 @@ public class DatabaseManager {
 			}
 			else if (arg.getType().equals("Date"))
 			{
-				java.util.Date d = null;
-				try {
-					d = format.parse(arg.getValue().toString());
-				} catch (ParseException e) {
-					e.printStackTrace();
+				if (arg.getValue().equals("NULL"))
+				{
+					stat.setDate(spot, null);
 				}
-				java.sql.Date d2 = new java.sql.Date(d.getTime());
-				stat.setDate(spot, d2);
-				///sql = sql.replaceFirst(Pattern.quote("?"), "'"+arg.getValue().toString()+"'");
+				else 
+				{
+					java.util.Date d = null;
+					try {
+						d = format.parse(arg.getValue().toString());
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					java.sql.Date d2 = new java.sql.Date(d.getTime());
+					stat.setDate(spot, d2);
+					///sql = sql.replaceFirst(Pattern.quote("?"), "'"+arg.getValue().toString()+"'");
+				}
 			}
 			
 			else System.out.println("UNKNOWN TYPE");
@@ -107,8 +113,15 @@ public class DatabaseManager {
 		        for (int i=0; i < cols; i++) {
 		        	if (selectArgs[i].getType().equals("Date"))
 		        	{
-		        		java.util.Date newDate = new Date(re.getDate(i+1).getTime());
-		        		selectArgs[i].setValue(format.format(newDate));
+		        		if (re.getDate(i+1) == null)
+		        		{
+		        			selectArgs[i].setValue("NULL");		    		        			
+		        		}
+		        		else
+		        		{
+		        			java.util.Date newDate = new Date(re.getDate(i+1).getTime());
+		        			selectArgs[i].setValue(format.format(newDate));
+		        		}
 		        	}
 		        	else
 		        	{
