@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import com.db.database.DatabaseManager;
 
-public class InsertVendorBill {
+public class InsertVendorBill extends Command{
 	
 	@Override
 	public CommandArgument[] getArguments() {
@@ -50,7 +50,7 @@ public class InsertVendorBill {
 				String argString = scanner.nextLine();
 				arg.setValue(argString);
 			}
-			preparedStatements.add(DatabaseManager.makePreparedStatement(SpecialOrderItemSQL,specialargs));			
+			//preparedStatements.add(DatabaseManager.makePreparedStatement(SpecialOrderItemSQL,specialargs));			
 			System.out.println("Enter more Items? Y for Yes");
 			moreItems = scanner.nextLine();
 			i++;
