@@ -57,10 +57,10 @@ public class InsertCustomerBill extends Command {
 				String argString = scanner.nextLine();
 				arg.setValue(argString);
 			}
-			preparedStatements.add(DatabaseManager.makePreparedStatement(CustomerBillSQL,specialargs));			
+			preparedStatements.add(DatabaseManager.makePreparedStatement(CustomerBillItemSQL,specialargs));			
 			
 			String updateSQL = "update StoreItem set Quantity=Quantity - "+ specialargs[1].getValue()+" where storeID = "+Main.userStoreId+" AND merchandiseID ="+specialargs[0].getValue();
-			System.out.println(updateSQL);
+			//System.out.println(updateSQL);
 			CommandArgument noargs[] = new CommandArgument[0];
 			preparedStatements.add(DatabaseManager.makePreparedStatement(updateSQL,noargs));			
 						

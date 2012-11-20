@@ -60,6 +60,7 @@ public class Main {
 
 		while (true)
 		{
+			Scanner scanner2 = new Scanner(System.in);			
 			System.out.println("**** "+department + " Commands ****");
 			System.out.println("Enter a command");
 
@@ -69,7 +70,7 @@ public class Main {
 				System.out.println(i + " "+ command.getCommandName());
 				i++;
 			}
-			String chosenCommand = scanner.nextLine();
+			String chosenCommand = scanner2.nextLine();
 			int choosenCommand = -1;
 			try{
 				choosenCommand = Integer.parseInt(chosenCommand);
