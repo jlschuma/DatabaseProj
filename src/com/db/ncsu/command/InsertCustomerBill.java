@@ -13,8 +13,8 @@ public class InsertCustomerBill extends Command {
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[4];
 		args[0] = new CommandArgument("Today","Date","Date",false);		
-		args[1] = new CommandArgument("StoreID","Int","StoreID",false);
-		args[2] = new CommandArgument("StaffID","Int","StaffID",false);
+		args[1] = new CommandArgument("StoreID","Int","Store ID",false);
+		args[2] = new CommandArgument("StaffID","Int","Staff ID",false);
 		args[3] = new CommandArgument("CustomerBillingCycleID","Int","Customer Billing Cycle ID",true);
 		return args;
 	}
@@ -41,9 +41,9 @@ public class InsertCustomerBill extends Command {
 		String CustomerBillItemSQL="Insert into CustomerBillItems(customerBillID, merchandiseID, quantity, price) VALUES ("+seqNum+",?,?,?)";		
 
 		CommandArgument specialargs[] = new CommandArgument[3];
-		specialargs[0] = new CommandArgument("merchandiseID","Int","merchandiseID", true);		
-		specialargs[1] = new CommandArgument("quantity","Int","quantity", true);
-		specialargs[2] = new CommandArgument("price", "Float", "price", true);
+		specialargs[0] = new CommandArgument("merchandiseID","Int","Merchandise ID", true);		
+		specialargs[1] = new CommandArgument("quantity","Int","Quantity", true);
+		specialargs[2] = new CommandArgument("price", "Float", "Price", true);
 	
 		String moreItems = "Y";
 		Scanner scanner = new Scanner(System.in);

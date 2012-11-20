@@ -16,14 +16,14 @@ public class UpdateVendorBillItemsStatus extends Command {
 		CommandArgument selectArgs[] = new CommandArgument[1];
 		selectArgs[0] = new CommandArgument("Status","String","Status",true);	
 		
-		String selectSQL = "select status from VendorBillItem where ID=?";
+		String selectSQL = "select status from VendorBillItems where ID=?";
 		if (!DatabaseManager.checkUpdate(selectSQL,args,selectArgs))
 		{			
 			System.out.println("No Rows found, Make sure "+args[0].getName()+"="+args[0].getValue()+" exists!");
 			return;
 		}
 
-		String updateSQL = "UPDATE VendorBillItem SET status = ? WHERE id = ?";
+		String updateSQL = "UPDATE VendorBillItems SET status = ? WHERE id = ?";
 		getParamValues(selectArgs);
 		DatabaseManager.executeUpdate(updateSQL,args,selectArgs);				
 		System.out.println("Vendor Bill Item Status Updated!");	
