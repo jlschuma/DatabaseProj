@@ -2,7 +2,7 @@ package com.db.ncsu.command;
 
 import com.db.database.DatabaseManager;
 
-public class UpdateMerchandise extends Command {
+public class UpdateStoreMerchandise extends Command {
 	@Override
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[2];

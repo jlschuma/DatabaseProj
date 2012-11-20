@@ -2,26 +2,26 @@ package com.db.ncsu.command;
 
 import com.db.database.DatabaseManager;
 
-public class ShowEmployeesByStore extends Command {
+public class LookUpMerchandiseByName extends Command {
 
 	@Override
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[1];
-		args[0] = new CommandArgument("StaffID","Int","StaffID",false);
+		args[0] = new CommandArgument("Name","String","Name",false);
 		return args;
 	}
 
 	@Override
 	public void run(CommandArgument[] args) {
-		//Select * from Staff
-		String sql = "Select * from Staff where storeId = ? order by StoreId, Department";
+		//Select * from Store
+		String sql = "Select * from Merchandise m, Vendor v where m.vendorId = v.id and m.name like ?";
 		DatabaseManager.runPreparedStatement(sql,args,true);
 			
 	}
 
 	@Override
 	public String getCommandName() {
-		return "Show all Employees for my Store";
+		return "Show all Stores";
 	}
 	
 }

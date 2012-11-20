@@ -6,10 +6,11 @@ public class CreateMerchandise extends Command {
 
 	@Override
 	public CommandArgument[] getArguments() {
-		CommandArgument args[] = new CommandArgument[3];
+		CommandArgument args[] = new CommandArgument[4];
 		args[0] = new CommandArgument("Name","String","Merchandise Name",true);
 		args[1] = new CommandArgument("Description","String","Merchandise Description",true);
 		args[2] = new CommandArgument("Vendor ID","Int","Vendor ID",true);		
+		args[3] = new CommandArgument("Vendor Price","Float","Vendor Price",true);		
 		return args;
 	}
 
@@ -17,7 +18,7 @@ public class CreateMerchandise extends Command {
 	public void run(CommandArgument[] args) {
 		//INSERT INTO Merchandise(id, name, description, vendorID)
 		//VALUES(merch_seq.nextval, 'The Help', 'Book about Ladies that were Nannies', 1)
-		String sql = "INSERT INTO Merchandise(id, name, description, vendorID) VALUES(merch_seq.nextval, ?, ?, ?)";
+		String sql = "INSERT INTO Merchandise(id, name, description, vendorID, vendorPrice) VALUES(merch_seq.nextval, ?, ?, ?,?)";
 		DatabaseManager.runPreparedStatement(sql,args,false);
 		System.out.println("MERCHANDISE ADDED!!!");	
 	}

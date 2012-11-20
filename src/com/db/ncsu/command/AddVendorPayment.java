@@ -21,6 +21,9 @@ public class AddVendorPayment extends Command {
 		//VALUES(1, 1, to_date('2003/05/06 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'mastercard 3332 3333 2222 3333', vendor_confirmation_seq.nextval)
 		String sql = "INSERT INTO VendorPayment(vendorBillID, staffID, paidDate, paymentInformation, confirmationCode) " +
 				"VALUES(?, ?, to_date(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'), ?, vendor_confirmation_seq.nextval)";
+		
+		//TODO update vendorBillId status to be 'paid'
+		
 		DatabaseManager.runPreparedStatement(sql,args,false);
 		System.out.println("PAYMENT ADDED!!!");	
 	}
