@@ -7,7 +7,7 @@ public class LookUpMerchandiseByName extends Command {
 	@Override
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[1];
-		args[0] = new CommandArgument("Name","String","Name",true);
+		args[0] = new CommandArgument("Name","String","Merchandise Name",true);
 		return args;
 	}
 

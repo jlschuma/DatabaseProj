@@ -6,7 +6,7 @@ public class UpdateAccount extends Command {
 	@Override
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[1];
-		args[0] = new CommandArgument("CustomerID","Int","Customer Id",true);
+		args[0] = new CommandArgument("CustomerID","Int","Customer ID",true);
 		return args;
 	}
 

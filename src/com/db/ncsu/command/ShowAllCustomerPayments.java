@@ -5,7 +5,7 @@ import com.db.database.DatabaseManager;
 public class ShowAllCustomerPayments extends Command {
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[1];
-		args[0] = new CommandArgument("customerID","Int","Customer ID",false);
+		args[0] = new CommandArgument("customerID","Int","Customer ID",true);
 
 		return args;
 	}
