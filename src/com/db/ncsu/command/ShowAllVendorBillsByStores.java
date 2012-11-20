@@ -25,6 +25,6 @@ public class ShowAllVendorBillsByStores extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Show all vendor bills by Store";
+		return "Show All Vendor Bills By Store";
 	}
 }

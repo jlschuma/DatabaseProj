@@ -32,7 +32,7 @@ public class UpdateVendorBillItemsStatus extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Update Vendor Bill Item status";
+		return "Update Vendor Bill Item Status";
 	}
 	
 }

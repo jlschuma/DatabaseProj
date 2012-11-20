@@ -20,7 +20,7 @@ public class ShowStore extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Show all Stores";
+		return "Show All Stores";
 	}
 	
 }

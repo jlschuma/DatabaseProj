@@ -21,7 +21,7 @@ public class ShowEmployeesByStore extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Show all Employees for my Store";
+		return "Show All Employees For My Store";
 	}
 	
 }

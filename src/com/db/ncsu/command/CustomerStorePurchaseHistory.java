@@ -6,8 +6,8 @@ public class CustomerStorePurchaseHistory extends Command {
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[3];
 		args[0] = new CommandArgument("Customer ID","Int","Customer ID",true);
-		args[1] = new CommandArgument("To Date","Date","To Date (MM/dd/yy)",true);
-		args[2] = new CommandArgument("From Date","Date","From Date (MM/dd/yy)",true);
+		args[1] = new CommandArgument("To Date","Date","To Date (MM/DD/YY)",true);
+		args[2] = new CommandArgument("From Date","Date","From Date (MM/DD/YY)",true);
 		return args;
 	}
 

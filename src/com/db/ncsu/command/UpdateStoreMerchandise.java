@@ -6,8 +6,8 @@ public class UpdateStoreMerchandise extends Command {
 	@Override
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[2];
-		args[0] = new CommandArgument("StoreID","Int","Store Id",true);
-		args[1] = new CommandArgument("MercahndiseID","Int","Merchandise Id",true);
+		args[0] = new CommandArgument("StoreID","Int","Store ID",true);
+		args[1] = new CommandArgument("MercahndiseID","Int","Merchandise ID",true);
 		return args;
 	}
 

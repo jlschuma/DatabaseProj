@@ -29,6 +29,6 @@ public class ShowAllCustomerBills extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Show all customer bills grouped by Customer";
+		return "Show All Customer Bills Grouped By Customer";
 	}
 }
