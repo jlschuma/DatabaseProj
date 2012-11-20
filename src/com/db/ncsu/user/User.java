@@ -15,15 +15,10 @@ public  class User {
 	{
 		
 		salesCommands = new Command[]{new UpdateAccount(), new CreateAccount(), new LookUpMerchandiseByName(), new CheckMerchandiseAvailability(),			
-<<<<<<< HEAD
-				new InsertSpecialOrder(),  new CreateBillingCycle(), new FindBillingCycle()};
+				new InsertSpecialOrder(),  new CreateBillingCycle(), new FindBillingCycle(), new ViewAllCustomerSpecialOrders(), new InsertCustomerBill()};
 		
 
 		
-=======
-				new InsertSpecialOrder(),  new CreateBillingCycle(), new InsertCustomerBill(), new ViewAllCustomerSpecialOrders()};
-				
->>>>>>> 54de4b95fbc8d0f23ee4b9069189e6cf44be214f
 		//TODO Insert CustomerPayment, ShowCustomerPayments		
 		billingCommands = new Command[]{ new CreateBillingCycle(), new UpdateCustomerBillingCycle(), 
 				new ShowCustomerBillingCycleTotalsByStatus(), new ShowCustomerBillingCycleTotalsByCustomer(), new ShowCustomerBillsInBillingCustomer()  };		
