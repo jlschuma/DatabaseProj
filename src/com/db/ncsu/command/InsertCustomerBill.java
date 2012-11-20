@@ -78,7 +78,7 @@ public class InsertCustomerBill extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Customer Buys Items";
+		return "Add a New Customer Bill";
 	}
 	
 	

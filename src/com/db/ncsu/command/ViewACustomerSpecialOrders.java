@@ -23,6 +23,6 @@ public class ViewACustomerSpecialOrders extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "View A Customers Special Orders";
+		return "View A Customer's Special Orders";
 	}
 }

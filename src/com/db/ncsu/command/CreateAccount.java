@@ -27,7 +27,7 @@ public class CreateAccount extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Create a new Account";
+		return "Create A New Account";
 	}
 	
 	

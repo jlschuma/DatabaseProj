@@ -27,7 +27,7 @@ public class FindBillingCycle extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Check for open billing cycle.";
+		return "Check For Open Billing Cycle";
 	}
 }
 

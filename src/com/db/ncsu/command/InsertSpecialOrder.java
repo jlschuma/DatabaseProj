@@ -67,7 +67,7 @@ public class InsertSpecialOrder extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Add a Special Order";
+		return "Add A Special Order";
 	}
 	
 	
