@@ -18,7 +18,12 @@ public class InsertCustomerPayment extends Command {
 	public void run(CommandArgument[] args) {
 		String sql = "INSERT INTO CustomerPayment(customerBillCycleID, staffID, paidDate, paymentInformation, confirmationCode) VALUES(?, ?, ?, ?, customer_confirmation_seq.nextval)";
 		DatabaseManager.runPreparedStatement(sql,args,false);
-		
+
+		//Select cbc.id AS BillingCycleId,cbc.customerid,sum(quantity*price) AS Total,cbc.status
+		String sqlUpdate = "Update CustomerBillingCycle set status='paid' where id="+args[0].getValue();
+		CommandArgument emptyargs[] = new CommandArgument[0];
+		DatabaseManager.runPreparedStatement(sqlUpdate,emptyargs,false);
+
 	}
 
 	@Override

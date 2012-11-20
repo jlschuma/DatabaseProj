@@ -15,17 +15,17 @@ public class ViewAllSpecialOrdersByType extends Command {
 		//SELECT storeID, status, specialOrderID, merchandiseID, quantity, price
 		//FROM SpecialOrder o, SpecialOrderItems oi
 		//WHERE o.id = oi.specialOrderID AND customerID = 3
-		String sql = "SELECT storeID, specialOrderID, SUM(quantity * price) AS Balance " +
-				"FROM SpecialOrder o, SpecialOrderItems oi " +
-				"WHERE o.id = oi.specialOrderID AND status = ?" +
-				"GROUP BY storeID, specialOrderID";
+		String sql = "SELECT storeID,specialOrderId, quantity,merchandiseID,vendorID,status " +
+				"FROM SpecialOrder o, SpecialOrderItems oi, Merchandise m " +
+				"WHERE o.id = oi.specialOrderID AND status = ? and oi.merchandiseID = m.id " +
+				"Order by merchandiseID,StoreId";
 		DatabaseManager.runPreparedStatement(sql,args,true);
 		
 	}
 
 	@Override
 	public String getCommandName() {
-		return "View Special Orders By Type";
+		return "View Special Orders By Status";
 	}
 
 }

@@ -18,10 +18,17 @@ public class CreateAccount extends Command {
 
 	@Override
 	public void run(CommandArgument[] args) {
+		//Get Next Sequence
+		String seqSQL="select customeraccount_seq.nextval from CustomerAccount";		
+		int seqNum = DatabaseManager.getSeqVal(seqSQL);
+
+		
 		//INSERT INTO CustomerAccount(id, ssn, name, dob, gender, phoneNumber, address)
 		//VALUES (customeraccount_seq.nextval, '123-34-2222', 'Mike', NULL, 'M', '333-333-3333', '101 Way');
-		String sql = "INSERT INTO CustomerAccount(id, ssn, name, dob, gender, phoneNumber, address) VALUES(customeraccount_seq.nextval, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO CustomerAccount(id, ssn, name, dob, gender, phoneNumber, address) VALUES("+seqNum+", ?, ?, ?, ?, ?, ?)";
 		DatabaseManager.runPreparedStatement(sql,args,false);
+
+		System.out.println("Added Customer Account "+seqNum);
 		
 	}
 

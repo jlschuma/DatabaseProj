@@ -17,14 +17,15 @@ public class ShowAllCustomerPayments extends Command {
 		//WHERE b.id = bi.customerBillID AND cb.id = b.id AND cb.customerID = 1 AND dateTime > Ô01-JAN-03Õ AND dateTime < Ô01-JAN-04Õ AND status = ÔbilledÕ
 		//GROUP BY storeID
 		String sql = "SELECT customerBillCycleID, staffID, paidDate, paymentInformation, confirmationCode " +
-				"FROM CustomerPayment, CustomerBillingCycle" +
-				"WHERE customerID = ?";
+				"FROM CustomerPayment cp, CustomerBillingCycle cbc " +
+				"WHERE customerID = ? "+
+				"AND cp.customerBillCycleID = cbc.id";
 		DatabaseManager.runPreparedStatement(sql,args,true);
 		
 	}
 
 	@Override
 	public String getCommandName() {
-		return "Show all customer payments for a given customer.";
+		return "Show all customer payments for a Given Customer";
 	}
 }

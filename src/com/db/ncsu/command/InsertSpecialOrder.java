@@ -58,7 +58,6 @@ public class InsertSpecialOrder extends Command {
 			moreItems = scanner.nextLine();
 			i++;
 		}
-		scanner.close();
 
 		//Run Transaction
 		DatabaseManager.runTransaction(preparedStatements);

@@ -158,9 +158,13 @@ public class DatabaseManager {
 		try {
 			PreparedStatement stat = connection.prepareStatement(sql);
 			ResultSet re = stat.executeQuery();
-			while (re.next())
+			if (re.next())
 			{
 				return re.getInt(1);
+			}
+			else
+			{
+				return -1;
 			}
 
 		} catch (SQLException e) {
@@ -168,7 +172,27 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
 
-		return 0;
+		return -1;
+	}
+	
+	public static int runInsert(String sql,CommandArgument[] args)
+	{
+		PreparedStatement stat = null;
+		try {
+			stat = connection.prepareStatement(sql);
+			int i=1;
+			for (CommandArgument arg : args)
+			{
+				stat = setPreparedStatementArgument(stat,arg,i);
+				i++;
+			}
+			return stat.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
+		
 	}
 
 

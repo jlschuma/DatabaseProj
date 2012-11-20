@@ -1,7 +1,9 @@
 package com.db.ncsu.command;
 
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 import com.db.database.DatabaseManager;
@@ -9,19 +11,57 @@ import com.db.ncsu.Main;
 
 public class InsertCustomerBill extends Command {
 
+	
+	static SimpleDateFormat format =
+            new SimpleDateFormat("MM/dd/yy");
+	
+	
 	@Override
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[4];
 		args[0] = new CommandArgument("Today","Date","Today",false);		
 		args[1] = new CommandArgument("StoreID","Int","StoreID",false);
 		args[2] = new CommandArgument("StaffID","Int","StaffID",false);
-		args[3] = new CommandArgument("CustomerBillingCycleID","Int","Customer Billing Cycle ID",true);
+		args[3] = new CommandArgument("CustomerId","Int","CustomerId",true);
 		return args;
 	}
 
 	@Override
 	public void run(CommandArgument[] args) {
-
+		
+		//Check for Billing Cycle
+		String checkBillingCycleSQL = "SELECT id " +
+				"FROM CustomerBillingCycle " +
+				"WHERE Status = 'open' AND SYSDATE >= startDate AND SYSDATE <= endDate AND customerID = "+args[3].getValue();
+		int billingCycleNum = DatabaseManager.getSeqVal(checkBillingCycleSQL);
+		if (billingCycleNum == -1)
+		{			
+			String makeBillingSQL = "INSERT INTO CustomerBillingCycle(id, customerID, startDate, endDate, status) " +
+					"VALUES(customerbillcycle_seq.nextval, ?, ?, ?,'open')";
+			CommandArgument billargs[] = new CommandArgument[3];
+			
+			billargs[0] = new CommandArgument("CustomerId","Int","CustomerId",false);	
+			billargs[0].setValue(args[3].getValue());
+			
+			billargs[1] = new CommandArgument("StartDate","Date","StartDate",false);
+			Date d = new Date();
+			billargs[1].setValue(format.format(d));			
+			
+			billargs[2] = new CommandArgument("EndDate","Date","EndDate",false);
+			if (d.getMonth() == 11)
+				d.setMonth(0);
+			else
+				d.setMonth(d.getMonth()+1);
+			billargs[2].setValue(format.format(d));
+						
+			DatabaseManager.runInsert(makeBillingSQL,billargs);
+			System.out.println("Created New Billing Cycle For Customer");
+		    
+			billingCycleNum = DatabaseManager.getSeqVal(checkBillingCycleSQL);			
+		}
+		
+		
+		
 		//Get Next Sequence
 		String seqSQL="select customerbill_seq.nextval from CustomerAccount";		
 		int seqNum = DatabaseManager.getSeqVal(seqSQL);
@@ -32,8 +72,18 @@ public class InsertCustomerBill extends Command {
 		ArrayList<PreparedStatement> preparedStatements = new ArrayList<PreparedStatement>();
 		
 		//Insert Top Level Special Order
-		String CustomerBillSQL="Insert into CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) VALUES ("+seqNum+",?,?,?,?)";
-		preparedStatements.add(DatabaseManager.makePreparedStatement(CustomerBillSQL,args));
+		String CustomerBillSQL="Insert into CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) VALUES ("+seqNum+",?,?,?,"+billingCycleNum+")";
+	
+		CommandArgument argsAdustjusted[] = new CommandArgument[3];
+		argsAdustjusted[0] = new CommandArgument("Today","Date","Today",false);		
+		argsAdustjusted[1] = new CommandArgument("StoreID","Int","StoreID",false);
+		argsAdustjusted[2] = new CommandArgument("StaffID","Int","StaffID",false);
+		for (int i =0; i <3; i++)
+		{
+			argsAdustjusted[i].setValue(args[i].getValue());
+			argsAdustjusted[i].setType(args[i].getType());			
+		}
+		preparedStatements.add(DatabaseManager.makePreparedStatement(CustomerBillSQL,argsAdustjusted));
 		
 		
 		
@@ -60,7 +110,6 @@ public class InsertCustomerBill extends Command {
 			preparedStatements.add(DatabaseManager.makePreparedStatement(CustomerBillItemSQL,specialargs));			
 			
 			String updateSQL = "update StoreItem set Quantity=Quantity - "+ specialargs[1].getValue()+" where storeID = "+Main.userStoreId+" AND merchandiseID ="+specialargs[0].getValue();
-			//System.out.println(updateSQL);
 			CommandArgument noargs[] = new CommandArgument[0];
 			preparedStatements.add(DatabaseManager.makePreparedStatement(updateSQL,noargs));			
 						
@@ -69,7 +118,7 @@ public class InsertCustomerBill extends Command {
 			moreItems = scanner.nextLine();
 			i++;
 		}
-		scanner.close();
+		//scanner.close();
 
 		//Run Transaction
 		DatabaseManager.runTransaction(preparedStatements);

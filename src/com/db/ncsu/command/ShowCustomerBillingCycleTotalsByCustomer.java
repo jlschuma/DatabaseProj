@@ -7,14 +7,15 @@ public class ShowCustomerBillingCycleTotalsByCustomer extends Command {
 	@Override
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[1];
-		args[0] = new CommandArgument("Status","String","Status (Open, Paid, Late)",true);
+		args[0] = new CommandArgument("CustomerId","Int","CustomerId",true);
+
 		return args;
 	}
 
 	@Override
 	public void run(CommandArgument[] args) {
 		//Select * from Staff
-		String sql = "Select cbc.id AS BillingCycleId,cbc.customerid,sum(quantity*price) AS Total,cbc.status "+
+		String sql = "Select cbc.id AS BillingCycleId,cbc.customerid,startdate,enddate,sum(quantity*price) AS Total,cbc.status "+
                      "from CustomerBill cb, "+ 
                       "CustomerBillItems cbi, "+
                       "CustomerBillingCycle cbc, "+ 
@@ -22,8 +23,8 @@ public class ShowCustomerBillingCycleTotalsByCustomer extends Command {
                      "where cb.id = cbi.customerbillid "+ 
                      "and cbc.id = cb.customerbillcycleid "+
                      "and ca.id = cbc.customerid            "+        
-                     "and status = ? "+
-                     "group by cbc.id,cbc.customerid,cbc.status;";
+                     "and customerid = ? "+
+                     "group by cbc.id,cbc.customerid,cbc.status,startdate,enddate order by enddate";
 		
 		DatabaseManager.runPreparedStatement(sql,args,true);
 			
@@ -31,7 +32,7 @@ public class ShowCustomerBillingCycleTotalsByCustomer extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Show Billing Cycles By Status";
+		return "Show Billing Cycles By Customer";
 	}
 	
 }

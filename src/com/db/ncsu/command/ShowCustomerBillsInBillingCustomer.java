@@ -14,7 +14,7 @@ public class ShowCustomerBillsInBillingCustomer extends Command {
 	@Override
 	public void run(CommandArgument[] args) {
 		//Select * from Staff
-		String sql = "Select datetime,quantity,price "+ 
+		String sql = "Select datetime,merchandiseId,quantity,price "+ 
 				      "from CustomerBill cb, "+
 		"CustomerBillItems cbi, "+
 		"CustomerBillingCycle cbc  "+
@@ -29,7 +29,7 @@ public class ShowCustomerBillsInBillingCustomer extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Show Billing Cycles By Status";
+		return "Show Billing Cycle Activity";
 	}
 	
 }

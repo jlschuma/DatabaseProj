@@ -10,10 +10,13 @@ public class InsertVendorBill extends Command{
 	
 	@Override
 	public CommandArgument[] getArguments() {
-		CommandArgument args[] = new CommandArgument[4];
-		args[1] = new CommandArgument("StoreID","Int","StoreID",false);
-		args[2] = new CommandArgument("StaffID","Int","StaffID",false);
-		args[3] = new CommandArgument("CustomerID","Int","Customer ID",true);
+		CommandArgument args[] = new CommandArgument[5];
+		args[0] = new CommandArgument("StoreID","Int","StoreID",false);
+		args[1] = new CommandArgument("StaffID","Int","StaffID",false);
+		args[2] = new CommandArgument("VendorID","Int","Vendor ID",true);
+		args[3] = new CommandArgument("Payment Information","String","Payment Information",true);
+		args[4] = new CommandArgument("Confirmation Code","String","Confirmation Code",true);
+
 		return args;
 	}
 	@Override
@@ -28,16 +31,17 @@ public class InsertVendorBill extends Command{
 		ArrayList<PreparedStatement> preparedStatements = new ArrayList<PreparedStatement>();
 		
 		//Insert Top Level Special Order
-		String VendorBillSQL="Insert into VendorBill(id, dateTime, storeID, staffID, vendorID, status) VALUES ("+seqNum+",to_date(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'),?,?,?,'open')";
+		String VendorBillSQL="Insert into VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) VALUES ("+seqNum+",to_date(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'),?,?,?,?,?)";
 		preparedStatements.add(DatabaseManager.makePreparedStatement(VendorBillSQL,args));
 		
 		//Insert Each Order
-		String VendorBillItemSQL="Insert into VendorBillItems(vendorbillID, merchandiseID, quantity, price) VALUES ("+seqNum+",?,?,1)";		
+		String VendorBillItemSQL="Insert into VendorBillItems(vendorbillID, merchandiseID, quantity, price, status) VALUES ("+seqNum+",?,?,?,'open')";		
 
-		CommandArgument specialargs[] = new CommandArgument[2];
+		CommandArgument specialargs[] = new CommandArgument[3];
 		specialargs[0] = new CommandArgument("merchandiseID","Int","merchandiseID",false);		
 		specialargs[1] = new CommandArgument("quantity","Int","quantity",false);
-	
+		specialargs[2] = new CommandArgument("price","Float","price",false);
+
 		String moreItems = "Y";
 		Scanner scanner = new Scanner(System.in);
 		int i=1;
@@ -50,21 +54,20 @@ public class InsertVendorBill extends Command{
 				String argString = scanner.nextLine();
 				arg.setValue(argString);
 			}
-			//preparedStatements.add(DatabaseManager.makePreparedStatement(SpecialOrderItemSQL,specialargs));			
+			preparedStatements.add(DatabaseManager.makePreparedStatement(VendorBillItemSQL,specialargs));			
 			System.out.println("Enter more Items? Y for Yes");
 			moreItems = scanner.nextLine();
 			i++;
 		}
-		scanner.close();
 
 		//Run Transaction
 		DatabaseManager.runTransaction(preparedStatements);
-		System.out.println("Special order Added!!!");	
+		System.out.println("Bought from Vendor!!!");	
 	}
 
 	@Override
 	public String getCommandName() {
-		return "Add a Special Order";
+		return "Buy From Vendor";
 	}
 	
 	
