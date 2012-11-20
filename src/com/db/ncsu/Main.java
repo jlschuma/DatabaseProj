@@ -70,12 +70,16 @@ public class Main {
 				System.out.println(i + " "+ command.getCommandName());
 				i++;
 			}
+			System.out.println("Q Exit the program.");
 			String chosenCommand = scanner2.nextLine();
+			if(chosenCommand.equals("Q") || chosenCommand.equals("q")){
+				return;
+			}
 			int choosenCommand = -1;
 			try{
 				choosenCommand = Integer.parseInt(chosenCommand);
 			} catch (NumberFormatException e) {
-				System.out.println("Incorrect input. Please enter the number of an option.");
+				System.out.println("Incorrect input. Please enter the number of an option or Q to quit.");
 				continue;
 			}
 			if(choosenCommand <= userCommands.length && choosenCommand > 0){
