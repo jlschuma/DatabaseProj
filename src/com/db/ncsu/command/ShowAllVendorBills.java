@@ -14,12 +14,12 @@ public class ShowAllVendorBills extends Command {
 	public void run(CommandArgument[] args) {
 		//SELECT vendorID, sum(price * quantity), storeID
 		//FROM VendorBill, VendorBillItems
-		//WHERE vendorBillID = id AND dateTime > Ô01-JAN-03Õ AND dateTime < Ô01-JAN-04Õ
+		//WHERE vendorBillID = id AND dateTime > ï¿½01-JAN-03ï¿½ AND dateTime < ï¿½01-JAN-04ï¿½
 		//GROUP BY vendorID,storeID
-		String sql = "SELECT vendorID, v.name, status, sum(price * quantity) AS TotalBalance " +
+		String sql = "SELECT vendorID, v.name, sum(price * quantity) AS TotalBalance " +
 				"FROM VendorBill vb, VendorBillItems vi, Vendor v " +
 				"WHERE vi.vendorBillID = vb.id AND vb.vendorID = v.id and StoreId = ?" +
-				"GROUP BY vendorID, v.name, status";
+				"GROUP BY vendorID, v.name";
 		DatabaseManager.runPreparedStatement(sql,args,true);
 		
 	}
