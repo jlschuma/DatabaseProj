@@ -180,14 +180,14 @@ VALUES(vendor_seq.nextval, 'Vend C', '919-111-1111','101 Way');
 INSERT INTO Vendor(id, name, phoneNumber, address)
 VALUES(vendor_seq.nextval, 'Vend D', '919-111-1111','101 Way');
 
-INSERT INTO Merchandise(id, name, description, vendorID)
-VALUES(merch_seq.nextval, 'The Help', 'Book about Ladies that were Nannies', 1);
-INSERT INTO Merchandise(id, name, description, vendorID)
-VALUES(merch_seq.nextval, 'The Basics of Human Interaction', 'Textbook for HCI Course', 1);
-INSERT INTO Merchandise(id, name, description, vendorID)
-VALUES(merch_seq.nextval, 'Dictionary', 'Contains all the words in the English Language', 2);
-INSERT INTO Merchandise(id, name, description, vendorID)
-VALUES(merch_seq.nextval, 'Super Mario Brothers', 'Story of the Plumbers', 3);
+INSERT INTO Merchandise(id, name, description, vendorID, vendorPrice)
+VALUES(merch_seq.nextval, 'The Help', 'Book about Ladies that were Nannies', 1, 19.99);
+INSERT INTO Merchandise(id, name, description, vendorID, vendorPrice)
+VALUES(merch_seq.nextval, 'The Basics of Human Interaction', 'Textbook for HCI Course', 1, 159.29);
+INSERT INTO Merchandise(id, name, description, vendorID, vendorPrice)
+VALUES(merch_seq.nextval, 'Dictionary', 'Contains all the words in the English Language', 2, 10.00);
+INSERT INTO Merchandise(id, name, description, vendorID, vendorPrice)
+VALUES(merch_seq.nextval, 'Super Mario Brothers', 'Story of the Plumbers', 3, 3.99);
 
 INSERT INTO Store(id, phoneNumber, address, name)
 VALUES(store_seq.nextval, '919-555-1212', 'Blah Blah Way 1', 'Store');
