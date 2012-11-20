@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.db.database.DatabaseManager;
+import com.db.ncsu.Main;
 
 public class InsertCustomerBill extends Command {
 
@@ -34,6 +35,8 @@ public class InsertCustomerBill extends Command {
 		String CustomerBillSQL="Insert into CustomerBill(id, dateTime, storeID, staffID, customerBillingCycleID) VALUES ("+seqNum+",?,?,?,?)";
 		preparedStatements.add(DatabaseManager.makePreparedStatement(CustomerBillSQL,args));
 		
+		
+		
 		//Insert Each Order
 		String CustomerBillItemSQL="Insert into CustomerBillItems(customerBillID, merchandiseID, quantity, price) VALUES ("+seqNum+",?,?,?)";		
 
@@ -55,6 +58,13 @@ public class InsertCustomerBill extends Command {
 				arg.setValue(argString);
 			}
 			preparedStatements.add(DatabaseManager.makePreparedStatement(CustomerBillSQL,specialargs));			
+			
+			String updateSQL = "update StoreItem set Quantity=Quantity - "+ specialargs[1].getValue()+" where storeID = "+Main.userStoreId+" AND merchandiseID ="+specialargs[0].getValue();
+			System.out.println(updateSQL);
+			CommandArgument noargs[] = new CommandArgument[0];
+			preparedStatements.add(DatabaseManager.makePreparedStatement(updateSQL,noargs));			
+						
+			
 			System.out.println("Enter more Items? Y for Yes");
 			moreItems = scanner.nextLine();
 			i++;
@@ -63,12 +73,12 @@ public class InsertCustomerBill extends Command {
 
 		//Run Transaction
 		DatabaseManager.runTransaction(preparedStatements);
-		System.out.println("Special order Added!!!");	
+		System.out.println("Customer Bill Added!!!");	
 	}
 
 	@Override
 	public String getCommandName() {
-		return "Add a Special Order";
+		return "Customer Buys Items";
 	}
 	
 	

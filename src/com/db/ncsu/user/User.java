@@ -14,12 +14,9 @@ public  class User {
 	public User()
 	{
 		
-		//TODO Insert CustomerBill, update inventory
 		salesCommands = new Command[]{new UpdateAccount(), new CreateAccount(), new LookUpMerchandiseByName(), new CheckMerchandiseAvailability(),			
-				new InsertSpecialOrder(),  new CreateBillingCycle()};
-		
-
-		
+				new InsertSpecialOrder(),  new CreateBillingCycle(), new InsertCustomerBill(), new ViewAllCustomerSpecialOrders()};
+				
 		//TODO Insert CustomerPayment, ShowCustomerPayments		
 		billingCommands = new Command[]{ new CreateBillingCycle(), new UpdateCustomerBillingCycle(), 
 				new ShowCustomerBillingCycleTotalsByStatus(), new ShowCustomerBillingCycleTotalsByCustomer(), new ShowCustomerBillsInBillingCustomer()  };		
@@ -30,7 +27,7 @@ public  class User {
 		stockingCommands = new Command[]{ new AddStoreItem(), new UpdateStoreMerchandise(), new CreateMerchandise(), new CreateVendor(),
 				new UpdateVendor(), new ReviewStoreInventory(), 
 				new ShowAllVendorBills(), new UpdateSpecialOrderItemStatus(), 
-				new ViewAllCustomerSpecialOrders(), new UpdateVendorBillItemsStatus(), new ViewAllCustomerSpecialOrdersByType()};
+				new UpdateVendorBillItemsStatus(), new ViewAllCustomerSpecialOrdersByType()};
 	
 
 		
