@@ -2,7 +2,7 @@ package com.db.ncsu.command;
 
 import com.db.database.DatabaseManager;
 
-public class ViewAllCustomerSpecialOrdersByType extends Command {
+public class ViewAllSpecialOrdersByType extends Command {
 	
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[1];
@@ -25,7 +25,7 @@ public class ViewAllCustomerSpecialOrdersByType extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "View Customer Special Orders By Type";
+		return "View Special Orders By Type";
 	}
 
 }
