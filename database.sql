@@ -31,7 +31,7 @@ DROP SEQUENCE customeraccount_seq;
 CREATE TABLE Store(
 id INT PRIMARY KEY,
 phoneNumber VARCHAR(13) NOT NULL,
-address VARCHAR(128) NOT NULL
+address VARCHAR(128) NOT NULL,
 name VARCHAR(128));
 
 CREATE TABLE Staff(
