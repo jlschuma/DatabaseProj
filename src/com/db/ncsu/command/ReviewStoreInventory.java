@@ -14,7 +14,7 @@ public class ReviewStoreInventory extends Command {
 		//SELECT storeID, merchandiseID, quantity, price
 		//FROM Store s, StoreItem si
 		//WHERE s.id = si.storeid AND storeId=1
-		String sql = "SELECT storeID, merchandiseID, name, quantity, price " +
+		String sql = "SELECT storeID, merchandiseID, m.name, quantity, price " +
 				"FROM Store s, StoreItem si, Merchandise m " +
 				"WHERE s.id = si.storeid AND si.merchandiseID = m.id AND storeId = ?";
 		DatabaseManager.runPreparedStatement(sql,args,true);
