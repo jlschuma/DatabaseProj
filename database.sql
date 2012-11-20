@@ -1,5 +1,4 @@
 --DROP TABLES
-DROP TABLE VendorPayment;
 DROP TABLE CustomerPayment;
 DROP TABLE CustomerBillItems;
 DROP TABLE SpecialOrderItems;
@@ -18,7 +17,6 @@ DROP TABLE Store;
 --DROP SEQUENCE
 DROP SEQUENCE staff_seq;
 DROP SEQUENCE vendor_seq;
-DROP SEQUENCE vendor_confirmation_seq;
 DROP SEQUENCE customer_confirmation_seq;
 DROP SEQUENCE merch_seq;
 DROP SEQUENCE storeitem_seq;
@@ -33,9 +31,8 @@ DROP SEQUENCE customeraccount_seq;
 CREATE TABLE Store(
 id INT PRIMARY KEY,
 phoneNumber VARCHAR(13) NOT NULL,
-address VARCHAR(128) NOT NULL
+address VARCHAR(128) NOT NULL,
 name VARCHAR(128));
-
 
 CREATE TABLE Staff(
 id INT PRIMARY KEY, 
@@ -49,9 +46,6 @@ title VARCHAR(4) NOT NULL,
 department VARCHAR(128) NOT NULL, 
 address VARCHAR(128) NOT NULL,
 CONSTRAINT staff_storeid_fk FOREIGN KEY(storeID) REFERENCES Store(id));
-
-
-
 
 CREATE TABLE Vendor(
 id INT PRIMARY KEY,
@@ -76,7 +70,6 @@ CONSTRAINT storeitem_pk PRIMARY KEY(storeID, merchandiseID),
 CONSTRAINT storeid_fk FOREIGN KEY(storeID) REFERENCES store(id), 
 CONSTRAINT storeitmerch_fk FOREIGN KEY(merchandiseID) REFERENCES Merchandise(id));
 
-
 CREATE TABLE CustomerAccount(
 id INT PRIMARY KEY,
 ssn VARCHAR(12),
@@ -93,7 +86,6 @@ startDate DATE NOT NULL,
 endDate DATE NOT NULL,
 status VARCHAR(12) NOT NULL,
 CONSTRAINT cbill_cusid_fk FOREIGN KEY(customerID) REFERENCES CustomerAccount(id));
-
 
 CREATE TABLE CustomerBill(
 id INT PRIMARY KEY,
@@ -140,7 +132,8 @@ dateTime DATE,
 storeID INT NOT NULL,
 staffID INT NOT NULL,
 vendorId INT NOT NULL,
-status VARCHAR(12) NOT NULL,
+paymentInformation VARCHAR(248),
+confirmationCode VARCHAR(128),
 CONSTRAINT vb_vendorid_fk FOREIGN KEY(vendorID) REFERENCES Vendor(id), 
 CONSTRAINT vb_storeid_fk FOREIGN KEY(storeID) REFERENCES Store(id), 
 CONSTRAINT vb_staffid_fk FOREIGN KEY(staffID) REFERENCES Staff(id));
@@ -153,16 +146,6 @@ price FLOAT NOT NULL,
 CONSTRAINT pub_vb_pk PRIMARY KEY(vendorBillID, merchandiseID),
 CONSTRAINT vbi_cusbil_fk FOREIGN KEY(vendorBillID) REFERENCES VendorBill(id), 
 CONSTRAINT vbii_staffid_fk FOREIGN KEY(merchandiseID) REFERENCES Merchandise(id));
-
-CREATE TABLE VendorPayment(
-vendorBillID INT NOT NULL,
-staffID INT NOT NULL,
-paidDate DATE NOT NULL,
-paymentInformation VARCHAR(248),
-confirmationCode VARCHAR(128),
-CONSTRAINT pub_vp_pk PRIMARY KEY(vendorBillID, staffID),
-CONSTRAINT vendorpay_bill_fk FOREIGN KEY(vendorBillID) REFERENCES VendorBill(id),
-CONSTRAINT vendorpay_staff_fk FOREIGN KEY(staffID) REFERENCES Staff(id));
 
 CREATE TABLE CustomerPayment(
 customerBillCycleID INT NOT NULL,
@@ -177,7 +160,6 @@ CONSTRAINT customerpaystaffid_fk FOREIGN KEY(staffID) REFERENCES Staff(id));
 --SEQUENCES
 CREATE SEQUENCE staff_seq MINVALUE 0 START WITH 0;
 CREATE SEQUENCE vendor_seq MINVALUE 0 START WITH 0;
-CREATE SEQUENCE vendor_confirmation_seq MINVALUE 0 START WITH 0;
 CREATE SEQUENCE customer_confirmation_seq MINVALUE 0 START WITH 0;
 CREATE SEQUENCE merch_seq MINVALUE 0 START WITH 0;
 CREATE SEQUENCE store_seq MINVALUE 0 START WITH 0;
@@ -198,14 +180,14 @@ VALUES(vendor_seq.nextval, 'Vend C', '919-111-1111','101 Way');
 INSERT INTO Vendor(id, name, phoneNumber, address)
 VALUES(vendor_seq.nextval, 'Vend D', '919-111-1111','101 Way');
 
-INSERT INTO Merchandise(id, name, description, vendorID)
-VALUES(merch_seq.nextval, 'The Help', 'Book about Ladies that were Nannies', 1);
-INSERT INTO Merchandise(id, name, description, vendorID)
-VALUES(merch_seq.nextval, 'The Basics of Human Interaction', 'Textbook for HCI Course', 1);
-INSERT INTO Merchandise(id, name, description, vendorID)
-VALUES(merch_seq.nextval, 'Dictionary', 'Contains all the words in the English Language', 2);
-INSERT INTO Merchandise(id, name, description, vendorID)
-VALUES(merch_seq.nextval, 'Super Mario Brothers', 'Story of the Plumbers', 3);
+INSERT INTO Merchandise(id, name, description, vendorID, vendorPrice)
+VALUES(merch_seq.nextval, 'The Help', 'Book about Ladies that were Nannies', 1, 19.99);
+INSERT INTO Merchandise(id, name, description, vendorID, vendorPrice)
+VALUES(merch_seq.nextval, 'The Basics of Human Interaction', 'Textbook for HCI Course', 1, 159.29);
+INSERT INTO Merchandise(id, name, description, vendorID, vendorPrice)
+VALUES(merch_seq.nextval, 'Dictionary', 'Contains all the words in the English Language', 2, 10.00);
+INSERT INTO Merchandise(id, name, description, vendorID, vendorPrice)
+VALUES(merch_seq.nextval, 'Super Mario Brothers', 'Story of the Plumbers', 3, 3.99);
 
 INSERT INTO Store(id, phoneNumber, address, name)
 VALUES(store_seq.nextval, '919-555-1212', 'Blah Blah Way 1', 'Store');
@@ -296,14 +278,14 @@ VALUES(3, 1, 2, 4.55, 'open');
 INSERT INTO SpecialOrderItems(specialOrderId , merchandiseID, quantity, price, status) 
 VALUES(3, 2, 3, 4.55, 'ordered');
 
-INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, status) 
-VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3, 'open');
-INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, status) 
-VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3, 'paid');
-INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, status) 
-VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3, 'ordered');
-INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, status) 
-VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3, 'open');
+INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
+VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3, 'mastercard', 'AE25');
+INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
+VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3, 'check', '23F1');
+INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
+VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3, 'money order', 'BC99');
+INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
+VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3, 'cash', 'EAB2');
 
 INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price) 
 VALUES(1, 1, 2, 4.55);
@@ -315,13 +297,6 @@ INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price)
 VALUES(3, 1, 2, 4.55);
 INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price) 
 VALUES(3, 2, 3, 4.55);
-
-INSERT INTO VendorPayment(vendorBillID, staffID, paidDate, paymentInformation, confirmationCode)
-VALUES(1, 1, to_date('2003/05/06 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'mastercard 3332 3333 2222 3333', vendor_confirmation_seq.nextval);
-INSERT INTO VendorPayment(vendorBillID, staffID, paidDate, paymentInformation, confirmationCode)
-VALUES(2, 1, to_date('2003/05/06 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'cash', vendor_confirmation_seq.nextval);
-INSERT INTO VendorPayment(vendorBillID, staffID, paidDate, paymentInformation, confirmationCode)
-VALUES(3, 1, to_date('2003/05/06 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'check', vendor_confirmation_seq.nextval);
 
 INSERT INTO CustomerPayment(customerBillCycleID, staffID, paidDate, paymentInformation, confirmationCode)
 VALUES(1, 1, to_date('2003/05/06 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'mastercard 3332 3333 2222 3333', customer_confirmation_seq.nextval);
