@@ -12,9 +12,9 @@ public class InsertCustomerBill extends Command {
 	@Override
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[4];
-		args[0] = new CommandArgument("Today","Date","Date",false);		
-		args[1] = new CommandArgument("StoreID","Int","Store ID",false);
-		args[2] = new CommandArgument("StaffID","Int","Staff ID",false);
+		args[0] = new CommandArgument("Today","Date","Today",false);		
+		args[1] = new CommandArgument("StoreID","Int","StoreID",false);
+		args[2] = new CommandArgument("StaffID","Int","StaffID",false);
 		args[3] = new CommandArgument("CustomerBillingCycleID","Int","Customer Billing Cycle ID",true);
 		return args;
 	}
