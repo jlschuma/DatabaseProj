@@ -16,7 +16,7 @@ public  class User {
 		
 		//TODO Insert CustomerBill, update inventory
 		salesCommands = new Command[]{new UpdateAccount(), new CreateAccount(), new LookUpMerchandiseByName(), new CheckMerchandiseAvailability(),			
-				new InsertSpecialOrder(),  new CreateBillingCycle()};
+				new InsertSpecialOrder(),  new CreateBillingCycle(), new FindBillingCycle()};
 		
 
 		
