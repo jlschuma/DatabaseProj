@@ -32,7 +32,7 @@ public class InsertCustomerBill extends Command {
 		ArrayList<PreparedStatement> preparedStatements = new ArrayList<PreparedStatement>();
 		
 		//Insert Top Level Special Order
-		String CustomerBillSQL="Insert into CustomerBill(id, dateTime, storeID, staffID, customerBillingCycleID) VALUES ("+seqNum+",?,?,?,?)";
+		String CustomerBillSQL="Insert into CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) VALUES ("+seqNum+",?,?,?,?)";
 		preparedStatements.add(DatabaseManager.makePreparedStatement(CustomerBillSQL,args));
 		
 		

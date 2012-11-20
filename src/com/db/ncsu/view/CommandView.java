@@ -38,7 +38,13 @@ public class CommandView {
 				Date d = new Date();
 				arg.setValue(format.format(d));
 			}
-
+			else if (arg.getName().equals("MonthLater"))
+			{
+				Date d = new Date();
+				d.setTime(d.getTime()+30*24*60*60);
+				arg.setValue(format.format(d));
+			}
+			
 		}		
 		command.execute(args);
 	}

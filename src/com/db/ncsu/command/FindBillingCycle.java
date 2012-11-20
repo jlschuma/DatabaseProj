@@ -20,7 +20,7 @@ public class FindBillingCycle extends Command {
 		//GROUP BY storeID
 		String sql = "SELECT * " +
 				"FROM CustomerBillingCycle " +
-				"WHERE ? > startDate AND ? < endDate AND customerID = ?";
+				"WHERE ? >= startDate AND ? <= endDate AND customerID = ?";
 		DatabaseManager.runPreparedStatement(sql,args,true);
 		
 	}
