@@ -16,6 +16,7 @@ public class Main {
 
 	public static void main(String args[])
 	{
+		DatabaseManager.initialize();
 		System.out.println("Enter your Id");
 
 
@@ -72,6 +73,8 @@ public class Main {
 			System.out.println("Q Exit The Program");
 			String chosenCommand = scanner.nextLine();
 			if(chosenCommand.equals("Q") || chosenCommand.equals("q")){
+				scanner.close();
+				DatabaseManager.close();
 				return;
 			}
 			int choosenCommand = -1;
