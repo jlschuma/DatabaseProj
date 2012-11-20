@@ -27,12 +27,8 @@ public class Main {
 		// Functions Lookup the type of user - Present a sales user		
 		User user = new User();
 	
-		
-		String department = "Franchise Manager";
 		//Look up id, set userId, setstoreId, bring back department
 		department = DatabaseManager.lookUpUser(id);
-		//public static int userId = 1;
-		//public static int userStoreId = 1
 				
 		Command[] userCommands = null;
 		
