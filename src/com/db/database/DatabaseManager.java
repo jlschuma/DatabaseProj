@@ -3,7 +3,7 @@ package com.db.database;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.ParameterMetaData;
+//import java.sql.ParameterMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
+//import java.util.regex.Pattern;
 
 import com.db.ncsu.Main;
 import com.db.ncsu.command.CommandArgument;
@@ -30,7 +30,7 @@ public class DatabaseManager {
 	private static ResultSet result = null;
 
 
-	private static DatabaseManager dm = new DatabaseManager();
+	//private static DatabaseManager dm = new DatabaseManager();
 	static SimpleDateFormat format =
             new SimpleDateFormat("MM/dd/yy");
 
@@ -360,7 +360,7 @@ public class DatabaseManager {
 
 
 
-	private static void initialize() {
+	public static void initialize() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connection = DriverManager.getConnection(jdbcURL, user, password);
@@ -374,7 +374,7 @@ public class DatabaseManager {
 
 
 
-	private static void close() {
+	public static void close() {
 		if (connection != null) {
 			try {
 				connection.close();
