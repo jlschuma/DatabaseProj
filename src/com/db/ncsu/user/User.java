@@ -13,12 +13,17 @@ public  class User {
 	
 	public User()
 	{
-		salesCommands = new Command[]{ new InsertSpecialOrder(), new UpdateStoreMerchandise(), new UpdateAccount(), new CreateAccount(), new CreateEmployee(), new ShowEmployees(), new CreateVendor(), new CreateStore(), new CreateMerchandise(), new AddVendorPayment(), new AddStoreItem(), new ReviewStoreInventory(), new CheckItemAtStore(), new CheckMerchandiseAvailability(), new ShowStore(), new ReviewBills(), new ViewAllCustomerSpecialOrders(), new GenerateCustomerPurchaseHistory(), new GenerateVendorPurchaseHistory(), new ReviewASpecialOrder(), new VendorStorePurchaseHistory(), new CustomerStorePurchaseHistory(), new ShowTotalInventory(), new ShowAllCustomerBills(), new ShowAllVendorBills(), new UpdateCustomerBillingCycle(), new UpdateSpecialOrderItemStatus(), new UpdateVendor(), new UpdateEmployee(), new CreateBillingCycle()};
 		
+		//TODO Insert CustomerBill, update inventory
+		salesCommands = new Command[]{new UpdateAccount(), new CreateAccount(), new LookUpMerchandiseByName(), new CheckMerchandiseAvailability(),			
+				new InsertSpecialOrder(),  new CreateBillingCycle()};
 		
-		//Insert CustomerPayment		
-	//	billingCommands = new Command[]{ new CreateBillingCycle(), new UpdateCustomerBillingCycle(), ShowAllCustomerBills()  };		
+
 		
+		//TODO Insert CustomerPayment, ShowCustomerPayments		
+		billingCommands = new Command[]{ new CreateBillingCycle(), new UpdateCustomerBillingCycle(), 
+				new ShowCustomerBillingCycleTotalsByStatus(), new ShowCustomerBillingCycleTotalsByCustomer(), new ShowCustomerBillsInBillingCustomer()  };		
+				
 		//Add Insert VendorBills, so they can order	
 		//Update VendorBill Status 
 		//ViewAllCustomerSpecialOrdersByType ... type on open, order
