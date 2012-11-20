@@ -25,7 +25,7 @@ public class AddStoreItem extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Add a store item";
+		return "Add A Store Item";
 	}
 
 }

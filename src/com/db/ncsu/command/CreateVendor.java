@@ -25,7 +25,7 @@ public class CreateVendor extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Create a new Vendor";
+		return "Create A New Vendor";
 	}
 
 }
