@@ -143,6 +143,7 @@ vendorBillID INT NOT NULL,
 merchandiseID INT NOT NULL,
 quantity INT NOT NULL,
 price FLOAT NOT NULL,
+status VARCHAR(12) NOT NULL,
 CONSTRAINT pub_vb_pk PRIMARY KEY(vendorBillID, merchandiseID),
 CONSTRAINT vbi_cusbil_fk FOREIGN KEY(vendorBillID) REFERENCES VendorBill(id), 
 CONSTRAINT vbii_staffid_fk FOREIGN KEY(merchandiseID) REFERENCES Merchandise(id));
@@ -287,16 +288,16 @@ VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:m
 INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
 VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3, 'cash', 'EAB2');
 
-INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price) 
-VALUES(1, 1, 2, 4.55);
-INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price) 
-VALUES(1, 2, 2, 4.55);
-INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price) 
-VALUES(2, 1, 2, 4.55);
-INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price) 
-VALUES(3, 1, 2, 4.55);
-INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price) 
-VALUES(3, 2, 3, 4.55);
+INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
+VALUES(1, 1, 2, 4.55, 'Ordered');
+INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
+VALUES(1, 2, 2, 4.55, 'Received');
+INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
+VALUES(2, 1, 2, 4.55, 'Received');
+INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
+VALUES(3, 1, 2, 4.55, 'Ordered');
+INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
+VALUES(3, 2, 3, 4.55, 'Received');
 
 INSERT INTO CustomerPayment(customerBillCycleID, staffID, paidDate, paymentInformation, confirmationCode)
 VALUES(1, 1, to_date('2003/05/06 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'mastercard 3332 3333 2222 3333', customer_confirmation_seq.nextval);

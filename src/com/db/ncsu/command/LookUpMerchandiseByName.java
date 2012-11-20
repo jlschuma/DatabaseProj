@@ -21,7 +21,7 @@ public class LookUpMerchandiseByName extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Show all Stores";
+		return "Look up Merchandise by Name";
 	}
 	
 }
