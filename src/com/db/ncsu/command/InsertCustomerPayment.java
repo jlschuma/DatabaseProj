@@ -8,7 +8,7 @@ public class InsertCustomerPayment extends Command {
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[4];
 		args[0] = new CommandArgument("customerBillCycleID","Int","Customer Billing Cycle ID",true);		
-		args[1] = new CommandArgument("staffID","Int","Staff ID",true);
+		args[1] = new CommandArgument("StaffID","Int","StaffID",false);
 		args[2] = new CommandArgument("Today","Date","Today",false);
 		args[3] = new CommandArgument("paymentInformation","String","Payment Information",true);
 		return args;
