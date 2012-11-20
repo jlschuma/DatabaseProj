@@ -25,6 +25,7 @@ public class DatabaseManager {
 	private static final String user = "jlschuma";
 	private static final String password = "test123";
 
+	// Create Static connection, so there will only ever be one
 	private static Connection connection = null;
 	private static Statement statement = null;
 	private static ResultSet result = null;
@@ -34,6 +35,7 @@ public class DatabaseManager {
 	static SimpleDateFormat format =
             new SimpleDateFormat("MM/dd/yy");
 
+	//private because we don't want anyone to instantiate the class
 	private DatabaseManager()
 	{
 		initialize();	
@@ -153,6 +155,7 @@ public class DatabaseManager {
 		return false;
 	}
 
+	
 	public static int getSeqVal(String sql)
 	{
 		try {
@@ -242,39 +245,43 @@ public class DatabaseManager {
 	}
 
 
+	//Execute series of SQL Prepared Statements
 	public static boolean runTransaction(ArrayList<PreparedStatement> preparedStatements)
 	{
-		//turn autocommit off
-		try {
-			connection.setAutoCommit(false);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
 
-		//run all queries
-		for(PreparedStatement preparedStatement : preparedStatements)
-		{
-			try {
-				preparedStatement.executeUpdate();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			}
-		}
-		//set back to true state
 		try {
+			//turn autocommit off
+			connection.setAutoCommit(false);			
+			
+			//run each prepared statement
+			for(PreparedStatement preparedStatement : preparedStatements)
+				{
+					preparedStatement.executeUpdate();
+				}
+			
+			//commit changes
 			connection.commit();
 			connection.setAutoCommit(true);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
+		} 
+		catch (SQLException e) {
 			e.printStackTrace();
+			try{
+				//Error rollback changes
+				connection.rollback();
+				connection.setAutoCommit(true);
+			}
+			catch (SQLException e2)
+			{
+				e2.printStackTrace();
+			}
 			return false;
-		}
+		}		
 		return true;
 	}
+	
+	
+	
 
 	public static PreparedStatement makePreparedStatement(String sql, CommandArgument[] args)
 	{
