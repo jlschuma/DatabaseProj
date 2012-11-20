@@ -48,7 +48,7 @@ Billing: Okay I'll enter your payment
 Billing: Your bill is paid.  Here are what your billing cycles look like now
 - 4. Show Billing Cycles By Customer
     using CustomerId=5
-Additional Info... Billing Staff can also see all cycles by type, edit a cycle, create a cycle
+ADDITIONAL COMMANDS: Billing Staff can also see all cycles by type, edit a cycle, create a cycle
 
 Stocking (UserId 5) 
 Stocking: As part of stocking I check for special order requests and order the items for customers
