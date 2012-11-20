@@ -284,13 +284,14 @@ public class DatabaseManager {
 	{
 		try {
 			PreparedStatement stat =  connection.prepareStatement("Select department,storeId from Staff where id = ?");
-			stat.setString(1, id);
+			int intid = Integer.parseInt(id);
+			stat.setInt(1, intid);
 			ResultSet re = stat.executeQuery();
+			Main.userId = intid;
 			if (re.next())
-			{
-				Main.userId = re.getInt(2);				
-				Main.userStoreId = re.getInt(1);
-				return re.getString(0);
+			{				
+				Main.userStoreId = re.getInt("storeId");
+				return re.getString("department");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

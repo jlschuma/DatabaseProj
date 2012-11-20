@@ -12,6 +12,7 @@ public class Main {
 	
 	public static int userId = 1;
 	public static int userStoreId = 1;
+	public static String department = "";
 	
 	public static void main(String args[])
 	{
@@ -27,18 +28,38 @@ public class Main {
 		User user = new User();
 	
 		
-		String department = "Franchise";
+		String department = "Franchise Manager";
 		//Look up id, set userId, setstoreId, bring back department
-		//String department = DatabaseManager.lookUpUser(id);
+		department = DatabaseManager.lookUpUser(id);
 		//public static int userId = 1;
 		//public static int userStoreId = 1
 				
 		Command[] userCommands = null;
 		
-		if (department.equals("Franchise"))
+		if (department.equals("Franchise Manager"))
 		{
 			userCommands = user.getFranchiseCommands();  
 		}
+		else if (department.equals("Manager"))
+		{
+			userCommands = user.managerCommands();
+		}
+		else if (department.equals("Billing"))
+		{
+			userCommands = user.billingCommands();
+		}
+		else if (department.equals("Sales"))
+		{
+			userCommands = user.getSalesCommands();
+		}
+		else if (department.equals("Stocking"))
+		{
+			userCommands = user.stockingCommands();
+		}
+		else{
+			System.out.println("User does not have a valid account type. Please contact database administrator.");
+		}
+		
 		
 		while (true)
 		{
