@@ -23,6 +23,6 @@ public class CheckMerchandiseAvailability extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Check Merchandise Availability (across all stores)";
+		return "Check Merchandise Availability (across all stores and the warehouse)";
 	}
 }

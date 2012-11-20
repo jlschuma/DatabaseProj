@@ -15,24 +15,22 @@ public  class User {
 	{
 		
 		salesCommands = new Command[]{new UpdateAccount(), new CreateAccount(), new LookUpMerchandiseByName(), new CheckMerchandiseAvailability(),			
-				new InsertSpecialOrder(),  new CreateBillingCycle(), new FindBillingCycle(), new ViewACustomerSpecialOrders(), new InsertCustomerBill()};
+				new InsertSpecialOrder(), new ViewACustomerSpecialOrders(), new InsertCustomerBill()};
 		
 
 		
 		//TODO Insert CustomerPayment, ShowCustomerPayments		
 		billingCommands = new Command[]{ new CreateBillingCycle(), new UpdateCustomerBillingCycle(), 
-				new ShowCustomerBillingCycleTotalsByStatus(), new ShowCustomerBillingCycleTotalsByCustomer(), new ShowCustomerBillsInBillingCustomer()  };		
+				new ShowCustomerBillingCycleTotalsByStatus(), new ShowCustomerBillingCycleTotalsByCustomer(), new ShowCustomerBillsInBillingCustomer(), new InsertCustomerPayment(), new ShowAllCustomerPayments()  };		
 				
 		//Add Insert VendorBills, so they can order	
 		//Update VendorBill Status 
 		//ViewAllCustomerSpecialOrdersByType ... type on open, order
 		stockingCommands = new Command[]{ new AddStoreItem(), new UpdateStoreMerchandise(), new CreateMerchandise(), new CreateVendor(),
 				new UpdateVendor(), new ReviewStoreInventory(), 
-				new ShowAllVendorBills(), new UpdateSpecialOrderItemStatus(), 
-				new UpdateVendorBillItemsStatus(), new ViewAllSpecialOrdersByType()};
+				 new UpdateSpecialOrderItemStatus(), 
+				new UpdateVendorBillItemsStatus(), new ViewAllSpecialOrdersByType(), new InsertVendorBill(), new ShowVendorBills(), new ShowVendors()};
 	
-
-		
 		managerCommands = new Command[]{ new CreateEmployee(), new UpdateEmployee(), new ShowEmployeesByStore(), new ShowAllCustomerBills(), new ShowAllVendorBills() };
 		franchiseCommands = new Command[]{ new CreateStore(),new ShowStore(), new CreateEmployee(), new ShowEmployees(), new ShowAllCustomerBillsByStore(), new ShowAllVendorBillsByStores()};
 

@@ -191,13 +191,13 @@ INSERT INTO Merchandise(id, name, description, vendorID, vendorPrice)
 VALUES(merch_seq.nextval, 'Super Mario Brothers', 'Story of the Plumbers', 3, 3.99);
 
 INSERT INTO Store(id, phoneNumber, address, name)
-VALUES(store_seq.nextval, '919-555-1212', 'Blah Blah Way 1', 'Store');
+VALUES(store_seq.nextval, '919-555-1212', 'Blah Blah Way 1', 'Store A');
 INSERT INTO Store(id, phoneNumber, address, name)
-VALUES(store_seq.nextval, '919-555-1212', 'Blah Blah Way 2', 'Store');
+VALUES(store_seq.nextval, '919-555-1212', 'Blah Blah Way 2', 'Warehouse');
 INSERT INTO Store(id, phoneNumber, address, name)
-VALUES(store_seq.nextval, '919-555-1212', 'Blah Blah Way 3', 'Store');
+VALUES(store_seq.nextval, '919-555-1212', 'Blah Blah Way 3', 'Store B');
 INSERT INTO Store(id, phoneNumber, address, name)
-VALUES(store_seq.nextval, '919-555-1212', 'Blah Blah Way 4', 'Warehouse');
+VALUES(store_seq.nextval, '919-555-1212', 'Blah Blah Way 4', 'Store C');
 
 INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
 VALUES(staff_seq.nextval, 1, 10000, '919-555-1212', 'Eric Lumpkin', 22, 'M', 'Mr.', 'Billing', '911 Parners Way, Cary, NC');
@@ -209,17 +209,17 @@ INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, de
 VALUES(staff_seq.nextval, 1, 40000, '919-555-1215', 'Brittany Johnson', 22, 'F', 'Ms.', 'Sales', '914 Parners Way, Cary, NC');
 INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
 VALUES(staff_seq.nextval, 1, 50000, '919-555-1216', 'Ting Yu', 22, 'M', 'Mr.', 'Stocking', '915 Parners Way, Cary, NC');
+INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
+VALUES(staff_seq.nextval, 2, 30000, '919-555-1215', 'Chris Miller', 22, 'F', 'Ms.', 'Manager', '914 Parners Way, Cary, NC');
 
 INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
-VALUES(1, 3, 1, 2.13);
+VALUES(1, 1, 10, 2.13);
 INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
-VALUES(1, 1, 2, 2.23);
+VALUES(1, 2, 0, 2.23);
 INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
-VALUES(1, 2, 3, 2.33);
+VALUES(1, 3, 0, 2.23);
 INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
-VALUES(2, 1, 4, 2.43);
-INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
-VALUES(2, 4, 5, 2.53);
+VALUES(2, 3, 0, 2.33);
 
 INSERT INTO CustomerAccount(id, ssn, name, dob, gender, phoneNumber, address)
 VALUES(customeraccount_seq.nextval, '123-34-2222', 'Mike', NULL, 'M', '333-333-3333', '101 Way');
@@ -237,7 +237,7 @@ VALUES(customerbillcycle_seq.nextval, 1, to_date('2012/04/01', 'yyyy/mm/dd'), to
 INSERT INTO CustomerBillingCycle(id, customerID, startDate, endDate, status) 
 VALUES(customerbillcycle_seq.nextval, 1, to_date('2012/03/01', 'yyyy/mm/dd'), to_date('2012/03/30', 'yyyy/mm/dd'), 'late'); 
 INSERT INTO CustomerBillingCycle(id, customerID, startDate, endDate, status) 
-VALUES(customerbillcycle_seq.nextval, 1, to_date('2012/02/01', 'yyyy/mm/dd'), to_date('2012/02/28', 'yyyy/mm/dd'), 'billed');
+VALUES(customerbillcycle_seq.nextval, 1, to_date('2012/02/01', 'yyyy/mm/dd'), to_date('2012/02/28', 'yyyy/mm/dd'), 'open');
 
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
 VALUES(customerbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3);
@@ -273,7 +273,7 @@ VALUES(1, 1, 2, 4.55, 'open');
 INSERT INTO SpecialOrderItems(specialOrderId , merchandiseID, quantity, price, status) 
 VALUES(1, 2, 2, 4.55, 'ordered');
 INSERT INTO SpecialOrderItems(specialOrderId , merchandiseID, quantity, price, status) 
-VALUES(2, 2, 2, 4.55, 'arrived');
+VALUES(2, 2, 2, 4.55, 'received');
 INSERT INTO SpecialOrderItems(specialOrderId , merchandiseID, quantity, price, status) 
 VALUES(3, 1, 2, 4.55, 'open');
 INSERT INTO SpecialOrderItems(specialOrderId , merchandiseID, quantity, price, status) 
@@ -284,20 +284,20 @@ VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:m
 INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
 VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3, 'check', '23F1');
 INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
-VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3, 'money order', 'BC99');
+VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 1, 3, 'money order', 'BC99');
 INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
-VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 3, 'cash', 'EAB2');
+VALUES(vendorbill_seq.nextval, to_date('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 1, 3, 'cash', 'EAB2');
 
 INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
-VALUES(1, 1, 2, 4.55, 'Ordered');
+VALUES(1, 1, 2, 4.55, 'open');
 INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
-VALUES(1, 2, 2, 4.55, 'Received');
+VALUES(1, 2, 2, 4.55, 'recieved');
 INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
-VALUES(2, 1, 2, 4.55, 'Received');
+VALUES(2, 1, 2, 4.55, 'recieved');
 INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
-VALUES(3, 1, 2, 4.55, 'Ordered');
+VALUES(3, 1, 2, 4.55, 'recieved');
 INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
-VALUES(3, 2, 3, 4.55, 'Received');
+VALUES(3, 2, 3, 4.55, 'recieved');
 
 INSERT INTO CustomerPayment(customerBillCycleID, staffID, paidDate, paymentInformation, confirmationCode)
 VALUES(1, 1, to_date('2003/05/06 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'mastercard 3332 3333 2222 3333', customer_confirmation_seq.nextval);
@@ -305,3 +305,6 @@ INSERT INTO CustomerPayment(customerBillCycleID, staffID, paidDate, paymentInfor
 VALUES(2, 1, to_date('2003/05/06 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'cash', customer_confirmation_seq.nextval);
 INSERT INTO CustomerPayment(customerBillCycleID, staffID, paidDate, paymentInformation, confirmationCode)
 VALUES(3, 1, to_date('2003/05/06 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'check', customer_confirmation_seq.nextval);
+
+Commit;
+

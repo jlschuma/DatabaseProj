@@ -18,7 +18,7 @@ public class ShowAllCustomerBillsByStore extends Command {
 		
 		String sql = "SELECT storeId, status, sum(price * quantity) AS TotalBalance " +
 				"FROM CustomerBillingCycle cb, CustomerBill b, CustomerBillItems bi "+
-				"WHERE b.id = bi.customerBillID AND cb.id = b.id "+
+				"WHERE cb.id = b.customerBillcycleid  AND b.id = bi.customerbillid " +
 				"GROUP BY storeId,Status ";
 
 		DatabaseManager.runPreparedStatement(sql,args,true);

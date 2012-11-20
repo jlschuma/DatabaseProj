@@ -10,6 +10,8 @@ public class ShowAllCustomerBills extends Command {
 		return args;
 	}
 
+	
+	
 	@Override
 	public void run(CommandArgument[] args) {
 		//SELECT storeID, sum(price * quantity) AS totalBill
@@ -18,8 +20,9 @@ public class ShowAllCustomerBills extends Command {
 		//GROUP BY storeID
 		String sql = "SELECT customerID, status, sum(price * quantity) AS TotalBalance " +
 				"FROM CustomerBillingCycle cb, CustomerBill b, CustomerBillItems bi " +
-				"WHERE b.id = bi.customerBillID AND cb.id = b.id and StoreId = ?" +
+				"WHERE cb.id = b.customerBillcycleid  AND b.id = bi.customerbillid and StoreId = ? " +
 				"GROUP BY status, customerID";
+		System.out.println(sql);
 		DatabaseManager.runPreparedStatement(sql,args,true);
 		
 	}

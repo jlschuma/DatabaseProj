@@ -56,11 +56,9 @@ public class Main {
 			System.out.println("User does not have a valid account type. Please contact database administrator.");
 			return;
 		}
-
-
+	
 		while (true)
 		{
-			Scanner scanner2 = new Scanner(System.in);			
 			System.out.println("**** "+department + " Commands ****");
 			System.out.println("Enter a command");
 
@@ -70,7 +68,7 @@ public class Main {
 				System.out.println(i + " "+ command.getCommandName());
 				i++;
 			}
-			String chosenCommand = scanner2.nextLine();
+			String chosenCommand = scanner.nextLine();
 			int choosenCommand = -1;
 			try{
 				choosenCommand = Integer.parseInt(chosenCommand);
