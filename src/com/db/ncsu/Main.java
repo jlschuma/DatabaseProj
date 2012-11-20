@@ -27,7 +27,7 @@ public class Main {
 		User user = new User();
 	
 		
-		String department = "Franchise";
+		String department = "Manager";
 		//Look up id, set userId, setstoreId, bring back department
 		//String department = DatabaseManager.lookUpUser(id);
 		//public static int userId = 1;
@@ -39,6 +39,11 @@ public class Main {
 		{
 			userCommands = user.getFranchiseCommands();  
 		}
+		else if (department.equals("Manager"))
+		{
+			userCommands = user.managerCommands();  
+		}
+		
 		
 		while (true)
 		{

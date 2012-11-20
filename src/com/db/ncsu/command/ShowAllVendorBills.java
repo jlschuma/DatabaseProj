@@ -4,7 +4,9 @@ import com.db.database.DatabaseManager;
 
 public class ShowAllVendorBills extends Command {
 	public CommandArgument[] getArguments() {
-		CommandArgument args[] = new CommandArgument[0];
+		CommandArgument args[] = new CommandArgument[1];
+		args[0] = new CommandArgument("StoreID","Int","StoreID",false);
+
 		return args;
 	}
 
@@ -14,16 +16,16 @@ public class ShowAllVendorBills extends Command {
 		//FROM VendorBill, VendorBillItems
 		//WHERE vendorBillID = id AND dateTime > Ô01-JAN-03Õ AND dateTime < Ô01-JAN-04Õ
 		//GROUP BY vendorID,storeID
-		String sql = "SELECT vendorBillID, vendorID, v.name, storeID, status, sum(price * quantity) AS Balance " +
+		String sql = "SELECT vendorID, v.name, status, sum(price * quantity) AS TotalBalance " +
 				"FROM VendorBill vb, VendorBillItems vi, Vendor v " +
-				"WHERE vi.vendorBillID = vb.id AND vb.vendorID = v.id " +
-				"GROUP BY vendorBillID, vendorID, v.name, storeID, status";
+				"WHERE vi.vendorBillID = vb.id AND vb.vendorID = v.id and StoreId = ?" +
+				"GROUP BY vendorID, v.name, status";
 		DatabaseManager.runPreparedStatement(sql,args,true);
 		
 	}
 
 	@Override
 	public String getCommandName() {
-		return "Show all vendor bills";
+		return "Show all vendor bills grouped by vendor";
 	}
 }

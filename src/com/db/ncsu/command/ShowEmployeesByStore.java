@@ -7,7 +7,7 @@ public class ShowEmployeesByStore extends Command {
 	@Override
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[1];
-		args[1] = new CommandArgument("StaffID","Int","StaffID",false);
+		args[0] = new CommandArgument("StaffID","Int","StaffID",false);
 		return args;
 	}
 
@@ -21,7 +21,7 @@ public class ShowEmployeesByStore extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Show all Employees";
+		return "Show all Employees for my Store";
 	}
 	
 }
