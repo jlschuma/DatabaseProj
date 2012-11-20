@@ -29,6 +29,7 @@ Customer: Yes!
 Sales: Here you can see your special order, we will call you when it comes in
 Customer: Great, how do I pay for my purchases
 Sales: You are billed monthly.  For information on Billing, you need to see the Billing department
+ADDITIONAL COMMANDS: Update a Customer Account
 
 Billing (UserId 1)
 Customer: I'd like to know my Bill for the month
@@ -68,17 +69,17 @@ Stocking: Now I can update the order and the Store Merchandise, to have the 2 Di
 - 9. View Special Orders By Status (find one to update and set status = received)
 - 2. Update Store Merchandise (2 Dictionaries for store 1)
 Stocking: Now I'd call the customer and say.. Your order is in.  If they call to check on their order they'll also see it has been recieved
-Stocking:  I can also add items to the store, add new merchandise, create vendors, Review all the Inventory in the store
+ADDITIONAL COMMANDS:  I can also add items to the store, add new merchandise, create vendors, Review all the Inventory in the store
 
 Manager (UserId 3)
 Manager: I can use my interface to see how much i've sold, and how much I bought ** Add Date Check
 - 4. Show all Customer Bills grouped by Customer
 - 5. Show all Vendor Bills groups by Vendor
-Manager: I can also Create/Update Employees, or show all the employees for my Store
+ADDITIONAL COMMANDS: I can also Create/Update Employees, or show all the employees for my Store
 
 Franchise Manager (UserId 2)
 Franchise Manager: I can use my interface to see how much each store has sold, and how they bought bought ** Add Date Check
 - 4. Show all Customer Bills grouped by Customer
 - 5. Show all Vendor Bills groups by Vendor
-Franchise Manager: I can also Show all employees, Create an Employee, Show all Stores or Create a Store
+ADDITIONAL COMMANDS: I can also Show all employees, Create an Employee, Show all Stores or Create a Store
 
