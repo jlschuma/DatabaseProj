@@ -54,6 +54,7 @@ public class Main {
 		}
 		else{
 			System.out.println("User does not have a valid account type. Please contact database administrator.");
+			return;
 		}
 		
 		
