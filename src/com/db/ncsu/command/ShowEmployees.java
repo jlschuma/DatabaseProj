@@ -20,7 +20,7 @@ public class ShowEmployees extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Show all Employees";
+		return "Show All Employees";
 	}
 	
 }

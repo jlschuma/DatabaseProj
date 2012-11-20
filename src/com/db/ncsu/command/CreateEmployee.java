@@ -29,7 +29,7 @@ public class CreateEmployee extends Command {
 
 	@Override
 	public String getCommandName() {
-		return "Create a new Employee";
+		return "Create A New Employee";
 	}
 	
 }
