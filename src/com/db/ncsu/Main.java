@@ -70,7 +70,7 @@ public class Main {
 				System.out.println(i + " "+ command.getCommandName());
 				i++;
 			}
-			System.out.println("Q Exit the program.");
+			System.out.println("Q Exit the program");
 			String chosenCommand = scanner2.nextLine();
 			if(chosenCommand.equals("Q") || chosenCommand.equals("q")){
 				return;
