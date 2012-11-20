@@ -29,7 +29,7 @@ public  class User {
 		stockingCommands = new Command[]{ new AddStoreItem(), new UpdateStoreMerchandise(), new CreateMerchandise(), new CreateVendor(),
 				new UpdateVendor(), new ReviewStoreInventory(), 
 				new ShowAllVendorBills(), new UpdateSpecialOrderItemStatus(), 
-				new UpdateVendorBillItemsStatus(), new ViewAllCustomerSpecialOrdersByType()};
+				new UpdateVendorBillItemsStatus(), new ViewAllSpecialOrdersByType()};
 	
 
 		
