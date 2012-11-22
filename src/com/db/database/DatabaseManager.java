@@ -386,7 +386,7 @@ public class DatabaseManager {
 			        System.out.print("\n"+cnt+"\t\t");
 			        for (i=1; i <= cols; i++) {
 			        	String type = meta.getColumnTypeName(i);
-			        	if(type.equals("NUMBER"))
+			        	if(type.equals("NUMBER")||(meta.getColumnTypeName(i).equals("VARCHAR2")&&re.getString(i).length()<8))
 			        		System.out.print(re.getString(i)+"\t\t");
 			        	else
 			        		System.out.print(re.getString(i)+"\t");
