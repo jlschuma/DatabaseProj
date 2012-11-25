@@ -7,7 +7,7 @@ public class ShowCustomerBillsInBillingCustomer extends Command {
 	@Override
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[1];
-		args[0] = new CommandArgument("Billing Cycle Id","int","Billing Cycle ID",true);
+		args[0] = new CommandArgument("Billing Cycle Id","Int","Billing Cycle ID",true);
 		return args;
 	}
 

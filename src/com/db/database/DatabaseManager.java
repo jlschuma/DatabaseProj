@@ -360,19 +360,38 @@ public class DatabaseManager {
 			    int cols = meta.getColumnCount();
 
 			    // we dump the column information about the result set
-		        System.out.print("Row Number\t");
+		        System.out.print("ROW NUMBER\t");
 			    for (i=1; i <= cols; i++)
 			    {
-			        System.out.print(meta.getColumnName(i)+ "\t");
+			    	System.out.print(meta.getColumnName(i));
+			    	int length = meta.getColumnName(i).length();
+			    	while(length%16 != 0)
+			    	{
+			    		System.out.print(" ");
+			    		length++;
+			    	}
+			    	if(meta.getColumnTypeName(i).equals("DATE"))
+			    		System.out.print("        ");
+			    	/*if(meta.getColumnTypeName(i).equals("DATE"))
+			    		System.out.print(meta.getColumnName(i)+" \t\t");
+			    	else if(meta.getColumnTypeName(i).length() < 8 && !meta.getColumnTypeName(i).equals("DATE"))
+			    		System.out.print(meta.getColumnName(i)+"\t\t");
+			    	else
+			    		System.out.print(meta.getColumnName(i)+"\t");*/
 			    }
 
 			    // and finally, we dump the result set
 			    int cnt = 1;			   
 			    while(re.next())
 			    {
+			    	
 			        System.out.print("\n"+cnt+"\t\t");
 			        for (i=1; i <= cols; i++) {
-			            System.out.print(re.getString(i)+"\t");
+			        	String type = meta.getColumnTypeName(i);
+			        	if(type.equals("NUMBER")||(meta.getColumnTypeName(i).equals("VARCHAR2")&&re.getString(i).length()<8))
+			        		System.out.print(re.getString(i)+"\t\t");
+			        	else
+			        		System.out.print(re.getString(i)+"\t");
 			        }
 			        cnt++;
 			    }

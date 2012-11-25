@@ -4,9 +4,10 @@ import com.db.database.DatabaseManager;
 
 public class ShowAllCustomerBills extends Command {
 	public CommandArgument[] getArguments() {
-		CommandArgument args[] = new CommandArgument[1];
+		CommandArgument args[] = new CommandArgument[3];
 		args[0] = new CommandArgument("StoreID","Int","StoreID",false);
-
+		args[1] = new CommandArgument("Start Date", "Date", "Start Date (MM/DD/YYYY)", true);
+		args[2] = new CommandArgument("End Date", "Date", "End Date (MM/DD/YYYY)", true);
 		return args;
 	}
 
@@ -20,9 +21,9 @@ public class ShowAllCustomerBills extends Command {
 		//GROUP BY storeID
 		String sql = "SELECT customerID, status, sum(price * quantity) AS TotalBalance " +
 				"FROM CustomerBillingCycle cb, CustomerBill b, CustomerBillItems bi " +
-				"WHERE cb.id = b.customerBillcycleid  AND b.id = bi.customerbillid and StoreId = ? " +
+				"WHERE cb.id = b.customerBillcycleid  AND b.id = bi.customerbillid and StoreId = ?  AND dateTime > ? AND dateTime < ? " +
 				"GROUP BY status, customerID";
-		System.out.println(sql);
+		//System.out.println(sql);
 		DatabaseManager.runPreparedStatement(sql,args,true);
 		
 	}
