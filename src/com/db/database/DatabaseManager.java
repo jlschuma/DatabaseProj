@@ -261,6 +261,8 @@ public class DatabaseManager {
 			
 			//commit changes
 			connection.commit();
+			
+			//turn autocommit back to on
 			connection.setAutoCommit(true);
 			
 		} 
