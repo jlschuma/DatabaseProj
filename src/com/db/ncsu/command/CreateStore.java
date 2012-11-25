@@ -6,9 +6,10 @@ public class CreateStore extends Command {
 
 	@Override
 	public CommandArgument[] getArguments() {
-		CommandArgument args[] = new CommandArgument[2];
-		args[0] = new CommandArgument("Phone Number","String","Phone Number",true);		
-		args[1] = new CommandArgument("Address","String","Address",true);
+		CommandArgument args[] = new CommandArgument[3];
+		args[0] = new CommandArgument("Name","String","Name",true);
+		args[1] = new CommandArgument("Phone Number","String","Phone Number",true);		
+		args[2] = new CommandArgument("Address","String","Address",true);
 
 		return args;
 	}
@@ -17,7 +18,7 @@ public class CreateStore extends Command {
 	public void run(CommandArgument[] args) {
 		//INSERT INTO Store(id, phoneNumber, address)
 		//VALUES(store_seq.nextval, '919-555-1212', 'Blah Blah Way 1')
-		String sql = "INSERT INTO Store(id, phoneNumber, address) VALUES(store_seq.nextval, ?, ?)";
+		String sql = "INSERT INTO Store(id, name, phoneNumber, address) VALUES(store_seq.nextval,?, ?, ?)";
 		DatabaseManager.runPreparedStatement(sql,args,false);
 		System.out.println("STORE CREATED!!!");	
 	}
