@@ -15,7 +15,7 @@ public  class User {
 	{
 		
 		salesCommands = new Command[]{new UpdateAccount(), new CreateAccount(), new LookUpMerchandiseByName(), new CheckMerchandiseAvailability(),			
-				new InsertSpecialOrder(), new ViewACustomerSpecialOrders(), new InsertCustomerBill()};
+				new InsertSpecialOrder(), new ViewACustomerSpecialOrders(), new InsertCustomerBill(), new LookUpCustomerByName()};
 		
 
 		
