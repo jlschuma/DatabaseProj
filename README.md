@@ -92,7 +92,7 @@ ADDITIONAL COMMANDS: I can also Create/Update Employees, or show all the employe
 
 Franchise Manager (UserId 2)
 Franchise Manager: I can use my interface to see how much each store has sold, and how they bought ** Add Date Check
-- 4. Show all Customer Bills grouped by Customer
-- 5. Show all Vendor Bills groups by Vendor
+- 5. Show all Customer Bills grouped by Customer
+- 6. Show all Vendor Bills groups by Vendor
 ADDITIONAL COMMANDS: I can also Show all employees, Create an Employee, Show all Stores or Create a Store
 
