@@ -10,12 +10,13 @@ public class InsertVendorBill extends Command{
 	
 	@Override
 	public CommandArgument[] getArguments() {
-		CommandArgument args[] = new CommandArgument[5];
-		args[0] = new CommandArgument("StoreID","Int","StoreID",false);
-		args[1] = new CommandArgument("StaffID","Int","StaffID",false);
-		args[2] = new CommandArgument("VendorID","Int","Vendor ID",true);
-		args[3] = new CommandArgument("Payment Information","String","Payment Information",true);
-		args[4] = new CommandArgument("Confirmation Code","String","Confirmation Code",true);
+		CommandArgument args[] = new CommandArgument[6];
+		args[0] = new CommandArgument("Today","Date","Today",false);		
+		args[1] = new CommandArgument("StoreID","Int","StoreID",false);
+		args[2] = new CommandArgument("StaffID","Int","StaffID",false);
+		args[3] = new CommandArgument("VendorID","Int","Vendor ID",true);
+		args[4] = new CommandArgument("Payment Information","String","Payment Information",true);
+		args[5] = new CommandArgument("Confirmation Code","String","Confirmation Code",true);
 
 		return args;
 	}
@@ -31,7 +32,7 @@ public class InsertVendorBill extends Command{
 		ArrayList<PreparedStatement> preparedStatements = new ArrayList<PreparedStatement>();
 		
 		//Insert Top Level Special Order
-		String VendorBillSQL="Insert into VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) VALUES ("+seqNum+",to_date(SYSDATE, 'yyyy/mm/dd hh24:mi:ss'),?,?,?,?,?)";
+		String VendorBillSQL="Insert into VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) VALUES ("+seqNum+",?,?,?,?,?,?)";
 		preparedStatements.add(DatabaseManager.makePreparedStatement(VendorBillSQL,args));
 		
 		//Insert Each Order

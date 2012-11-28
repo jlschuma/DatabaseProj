@@ -273,7 +273,7 @@ VALUES(1, 1, 2, 4.55, 'open');
 INSERT INTO SpecialOrderItems(specialOrderId , merchandiseID, quantity, price, status) 
 VALUES(1, 2, 2, 4.55, 'ordered');
 INSERT INTO SpecialOrderItems(specialOrderId , merchandiseID, quantity, price, status) 
-VALUES(2, 2, 2, 4.55, 'received');
+VALUES(2, 2, 2, 4.55, 'sent');
 INSERT INTO SpecialOrderItems(specialOrderId , merchandiseID, quantity, price, status) 
 VALUES(3, 1, 2, 4.55, 'open');
 INSERT INTO SpecialOrderItems(specialOrderId , merchandiseID, quantity, price, status) 

@@ -35,12 +35,13 @@ public class InsertSpecialOrder extends Command {
 		preparedStatements.add(DatabaseManager.makePreparedStatement(SpecialOrderSQL,args));
 		
 		//Insert Each Order
-		String SpecialOrderItemSQL="Insert into SpecialOrderItems(specialOrderID, merchandiseID, quantity, price, status) VALUES ("+seqNum+",?,?,1,'open')";		
+		String SpecialOrderItemSQL="Insert into SpecialOrderItems(specialOrderID, merchandiseID, quantity, price, status) VALUES ("+seqNum+",?,?,?,'open')";		
 
-		CommandArgument specialargs[] = new CommandArgument[2];
+		CommandArgument specialargs[] = new CommandArgument[3];
 		specialargs[0] = new CommandArgument("merchandiseID","Int","merchandiseID",false);		
 		specialargs[1] = new CommandArgument("quantity","Int","quantity",false);
-	
+		specialargs[2] = new CommandArgument("price","Float","price",false);
+		
 		String moreItems = "Y";
 		Scanner scanner = new Scanner(System.in);
 		int i=1;

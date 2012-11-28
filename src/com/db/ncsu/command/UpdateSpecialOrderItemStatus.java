@@ -14,7 +14,7 @@ public class UpdateSpecialOrderItemStatus extends Command {
 	@Override
 	public void run(CommandArgument[] args) {
 		CommandArgument selectArgs[] = new CommandArgument[1];
-		selectArgs[0] = new CommandArgument("Status","String","Status (open, ordered, received)",true);	
+		selectArgs[0] = new CommandArgument("Status","String","Status (open, ordered, sent, cancel)",true);	
 		
 		String selectSQL = "select status from SpecialOrderItems where specialOrderID = ? AND MerchandiseID = ?";
 		if (!DatabaseManager.checkUpdate(selectSQL,args,selectArgs))

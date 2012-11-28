@@ -20,7 +20,7 @@ public class ShowCustomerBillsInBillingCustomer extends Command {
 		"CustomerBillingCycle cbc  "+
 		"where cb.id = cbi.customerbillid  "+
 		"and cbc.id = cb.customerbillcycleid "+
-		"and cbc.id = ?";
+		"and cbc.id = ? order by datetime";
 		
 		
 		DatabaseManager.runPreparedStatement(sql,args,true);

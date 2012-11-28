@@ -15,7 +15,7 @@ public class UpdateVendorBillItemsStatus extends Command {
 	@Override
 	public void run(CommandArgument[] args) {
 		CommandArgument selectArgs[] = new CommandArgument[1];
-		selectArgs[0] = new CommandArgument("Status","String","Status",true);	
+		selectArgs[0] = new CommandArgument("Status","String","Status (open or recieved)",true);	
 		
 		String selectSQL = "select status from VendorBillItems where vendorbillid = ? AND merchandiseid = ?";
 		if (!DatabaseManager.checkUpdate(selectSQL,args,selectArgs))
