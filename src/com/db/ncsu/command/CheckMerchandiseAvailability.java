@@ -14,9 +14,9 @@ public class CheckMerchandiseAvailability extends Command {
 		//SELECT storeID, merchandiseID, quantity, price
 		//FROM Store s, StoreItem si
 		//WHERE s.id = si.storeID AND si.merchandiseID =1
-		String sql = "SELECT storeID, name, merchandiseID, quantity, price " +
-				"FROM Store s, StoreItem si " +
-				"WHERE s.id = si.storeID AND si.merchandiseID = ?";
+		String sql = "SELECT storeID, s.name, merchandiseID, m.name, quantity, price " +
+				"FROM Store s, StoreItem si, Merchandise m " +
+				"WHERE s.id = si.storeID AND si.merchandiseID = m.id AND si.merchandiseID = ?";
 		DatabaseManager.runPreparedStatement(sql,args,true);
 		
 	}

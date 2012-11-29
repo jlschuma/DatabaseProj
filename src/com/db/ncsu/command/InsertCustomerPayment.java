@@ -1,8 +1,5 @@
 package com.db.ncsu.command;
 
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
-
 import com.db.database.DatabaseManager;
 
 public class InsertCustomerPayment extends Command {
@@ -19,20 +16,13 @@ public class InsertCustomerPayment extends Command {
 
 	@Override
 	public void run(CommandArgument[] args) {
-		
-		ArrayList<PreparedStatement> preparedStatements = new ArrayList<PreparedStatement>();
-		
-		String CustomerPaymentSQL="Insert into CustomerPayment(customerBillCycleID, staffID, paidDate, paymentInformation, confirmationCode) VALUES (?,?,?,?,customer_confirmation_seq.nextval)";
-		preparedStatements.add(DatabaseManager.makePreparedStatement(CustomerPaymentSQL,args));
+		String sql = "INSERT INTO CustomerPayment(customerBillCycleID, staffID, paidDate, paymentInformation, confirmationCode) VALUES(?, ?, ?, ?, customer_confirmation_seq.nextval)";
+		DatabaseManager.runPreparedStatement(sql,args,false);
 
 		//Select cbc.id AS BillingCycleId,cbc.customerid,sum(quantity*price) AS Total,cbc.status
 		String sqlUpdate = "Update CustomerBillingCycle set status='paid' where id="+args[0].getValue();
 		CommandArgument emptyargs[] = new CommandArgument[0];
-		preparedStatements.add(DatabaseManager.makePreparedStatement(sqlUpdate,emptyargs));			
-		
-		//Run Transaction
-				DatabaseManager.runTransaction(preparedStatements);
-				System.out.println("Customer Payment made!!!");
+		DatabaseManager.runPreparedStatement(sqlUpdate,emptyargs,false);
 
 	}
 
@@ -46,4 +36,3 @@ public class InsertCustomerPayment extends Command {
 
 	
 }
-

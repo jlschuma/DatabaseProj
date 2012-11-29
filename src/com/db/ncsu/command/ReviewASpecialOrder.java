@@ -14,9 +14,9 @@ public class ReviewASpecialOrder extends Command {
 		//SELECT storeID, status, specialOrderID, merchandiseID, quantity, price
 		//FROM SpecialOrder o, SpecialOrderItems oi
 		//WHERE o.id = oi.specialOrderID AND o.id = 1
-		String sql = "SELECT storeID, status, specialOrderID, merchandiseID, quantity, price " +
-				"FROM SpecialOrder o, SpecialOrderItems oi " +
-				"WHERE o.id = oi.specialOrderID AND o.id = ?";
+		String sql = "SELECT storeID, status, specialOrderID, merchandiseID, m.name, quantity, price " +
+				"FROM SpecialOrder o, SpecialOrderItems oi, Merchandise m " +
+				"WHERE o.id = oi.specialOrderID AND oi.merchandiseID = m.id AND o.id = ?";
 		DatabaseManager.runPreparedStatement(sql,args,true);
 		
 	}
