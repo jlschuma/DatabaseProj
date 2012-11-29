@@ -12,6 +12,9 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 //import java.util.regex.Pattern;
 
 import com.db.ncsu.Main;
@@ -19,6 +22,8 @@ import com.db.ncsu.command.CommandArgument;
 
 public class DatabaseManager {
 	private static final String jdbcURL = "jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl";
+	private final static Logger LOGGER = Logger.getLogger("update_log");
+	static private FileHandler fh; 
 
 
 	// Put your oracle ID and password here
@@ -39,6 +44,16 @@ public class DatabaseManager {
 	private DatabaseManager()
 	{
 		initialize();	
+		try{
+			int limit = 1000000; // 1MB
+			fh = new FileHandler("Logging.txt", limit, 1, true);
+			SimpleFormatter formatter = new SimpleFormatter();
+			fh.setFormatter(formatter);
+			LOGGER.addHandler(fh);
+
+		}catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 
 	private static PreparedStatement setPreparedStatementArgument(PreparedStatement stat, CommandArgument arg, int spot) throws NumberFormatException, SQLException	
@@ -256,7 +271,19 @@ public class DatabaseManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
+		
+		String newValues = " ";
+		for (CommandArgument arg: selectArgs){
+			newValues = newValues + arg.getValue().toString() + " , ";
+			
+		}
+		String id = "";
+		for (CommandArgument arg: args){
+			id = id + arg.getValue().toString();
+		}
+		
+		LOGGER.info( sql + " was run and with the following corresponding values:" + newValues + "for ID " + id + ".");
 
 		if (count == 1)
 			return true;
