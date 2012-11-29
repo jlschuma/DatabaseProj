@@ -15,7 +15,7 @@ public class VendorStorePurchaseHistory extends Command {
 	public void run(CommandArgument[] args) {
 		//SELECT vendorID, sum(price * quantity)
 		//FROM VendorBill, VendorBillItems
-		//WHERE dateTime > Ô01-JAN-03Õ AND dateTime < Ô01-JAN-04Õ AND storeID = 1 AND vendorBillID = id
+		//WHERE dateTime > 01-JAN-03 AND dateTime < 01-JAN-04 AND storeID = 1 AND vendorBillID = id
 		//GROUP BY vendorID
 		String sql = "SELECT vb.vendorID, merchandiseID, m.name, price, SUM(quantity) AS Quantity " +
 				"FROM VendorBill vb, VendorBillItems vi, Merchandise m " +

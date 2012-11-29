@@ -14,7 +14,7 @@ public class ShowAllVendorBillsByStores extends Command {
 	public void run(CommandArgument[] args) {
 		//SELECT vendorID, sum(price * quantity), storeID
 		//FROM VendorBill, VendorBillItems
-		//WHERE vendorBillID = id AND dateTime > Ô01-JAN-03Õ AND dateTime < Ô01-JAN-04Õ
+		//WHERE vendorBillID = id AND dateTime > 01-JAN-03 AND dateTime < 01-JAN-04
 		//GROUP BY vendorID,storeID
 		
 		String sql = "SELECT  vendorID, v.name, storeID, status, sum(price * quantity) AS TotalBalance " +
