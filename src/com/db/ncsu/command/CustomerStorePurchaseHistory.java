@@ -15,7 +15,7 @@ public class CustomerStorePurchaseHistory extends Command {
 	public void run(CommandArgument[] args) {
 		//SELECT cb.customerID, sum(quantity * price)
 		//FROM CustomerBillingCycle cb, CustomerBill b, CustomerBillItems bi
-		//WHERE b.id = bi.customerBillID AND cb.id = b.id AND cb.customerID = 1 AND dateTime > Ô01-JAN-03Õ AND dateTime < Ô01-JAN-04Õ
+		//WHERE b.id = bi.customerBillID AND cb.id = b.id AND cb.customerID = 1 AND dateTime > 01-JAN-03 AND dateTime < 01-JAN-04
 		//GROUP BY customerID
 		String sql = "SELECT cb.customerID, merchandiseID, m.name, price, SUM(quantity) AS Quantity " +
 				"FROM CustomerBillingCycle cb, CustomerBill b, CustomerBillItems bi, Merchandise m " +

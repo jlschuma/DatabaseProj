@@ -16,7 +16,7 @@ public class FindBillingCycle extends Command {
 	public void run(CommandArgument[] args) {
 		//SELECT storeID, sum(price * quantity) AS totalBill
 		//FROM CustomerBillingCycle cb, CustomerBill b, CustomerBillItems bi
-		//WHERE b.id = bi.customerBillID AND cb.id = b.id AND cb.customerID = 1 AND dateTime > Ô01-JAN-03Õ AND dateTime < Ô01-JAN-04Õ AND status = ÔbilledÕ
+		//WHERE b.id = bi.customerBillID AND cb.id = b.id AND cb.customerID = 1 AND dateTime > 01-JAN-03 AND dateTime < 01-JAN-04 AND status = billed
 		//GROUP BY storeID
 		String sql = "SELECT * " +
 				"FROM CustomerBillingCycle " +
