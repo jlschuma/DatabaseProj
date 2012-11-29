@@ -3,6 +3,7 @@ package com.db.ncsu.command;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -48,10 +49,10 @@ public class InsertCustomerBill extends Command {
 			billargs[1].setValue(format.format(d));			
 			
 			billargs[2] = new CommandArgument("EndDate","Date","EndDate",false);
-			if (d.getMonth() == 11)
-				d.setMonth(0);
-			else
-				d.setMonth(d.getMonth()+1);
+			Calendar c = Calendar.getInstance();
+			c.setTime(d);
+			c.add(Calendar.MONTH, 1);
+			d = c.getTime();
 			billargs[2].setValue(format.format(d));
 						
 			DatabaseManager.runInsert(makeBillingSQL,billargs);
