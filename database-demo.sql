@@ -195,7 +195,7 @@ VALUES(store_seq.nextval, '919-555-1212', '12 Oval Dr.', 'Books-a-Thousand-1');
 INSERT INTO Store(id, phoneNumber, address, name)
 VALUES(store_seq.nextval, '919-123-6532', '111 Centennial Pkwy', 'Books-a-Thousand-2');
 INSERT INTO Store(id, phoneNumber, address, name)
-VALUES(store_seq.nextval, '919-555-5555', '123 Green St.', 'Warehouse');
+VALUES(store_seq.nextval, '919-555-5555', '123 Green St.', 'Warehouse         ');
 
 
 -- Staff Prepop Data for Demo (5/6)  ***(We don't have DOB, what are they using title for???)
@@ -218,9 +218,28 @@ VALUES(3, 1234, 7, 725.00);
 INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
 VALUES(3, 1235, 10, 650.00);
 INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
+VALUES(3, 1236, 0, 700.00);
+INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
+VALUES(3, 1237, 0, 5.00);
+
+INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
 VALUES(1, 1236, 6, 700.00);
 INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
+VALUES(1, 1234, 0, 725.00);
+INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
+VALUES(1, 1235, 0, 650.00);
+INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
+VALUES(1, 1237, 0, 5.00);
+
+
+INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
 VALUES(2, 1237, 6, 5.00);
+INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
+VALUES(2, 1236, 0, 700.00);
+INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
+VALUES(2, 1234, 0, 725.00);
+INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
+VALUES(2, 1235, 0, 650.00);
 
 -- CustomerAccount Prepop Data for Demo
 INSERT INTO CustomerAccount(id, ssn, name, dob, gender, phoneNumber, address)
@@ -234,19 +253,19 @@ VALUES(customeraccount_seq.nextval, '735-82-1232', 'Beavis', to_date('1955/12/12
 
 -- CustomerBillingCycle Prepop Data for Demo
 INSERT INTO CustomerBillingCycle(id, customerID, startDate, endDate, status) 
-VALUES(customerbillcycle_seq.nextval, 1, to_date('2012/04/12', 'yyyy/mm/dd'), to_date('2012/05/12', 'yyyy/mm/dd'), 'open'); 
+VALUES(customerbillcycle_seq.nextval, 1, to_date('2012/04/12', 'yyyy/mm/dd'), to_date('2012/05/12', 'yyyy/mm/dd'), 'paid'); 
 INSERT INTO CustomerBillingCycle(id, customerID, startDate, endDate, status) 
 VALUES(customerbillcycle_seq.nextval, 2, to_date('2012/04/17', 'yyyy/mm/dd'), to_date('2012/05/17', 'yyyy/mm/dd'), 'paid'); 
 INSERT INTO CustomerBillingCycle(id, customerID, startDate, endDate, status) 
-VALUES(customerbillcycle_seq.nextval, 3, to_date('2012/03/09', 'yyyy/mm/dd'), to_date('2012/04/09', 'yyyy/mm/dd'), 'late'); 
+VALUES(customerbillcycle_seq.nextval, 3, to_date('2012/03/09', 'yyyy/mm/dd'), to_date('2012/04/09', 'yyyy/mm/dd'), 'paid'); 
 INSERT INTO CustomerBillingCycle(id, customerID, startDate, endDate, status) 
-VALUES(customerbillcycle_seq.nextval, 4, to_date('2012/08/24', 'yyyy/mm/dd'), to_date('2012/09/24', 'yyyy/mm/dd'), 'open');
+VALUES(customerbillcycle_seq.nextval, 4, to_date('2012/08/24', 'yyyy/mm/dd'), to_date('2012/09/24', 'yyyy/mm/dd'), 'paid');
 
 -- CustomerBill Prepop Data for Demo
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
 VALUES(customerbill_seq.nextval, to_date('2012/04/12 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 3, 1);
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
-VALUES(customerbill_seq.nextval, to_date('2012/04/17 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 3, 2);
+VALUES(customerbill_seq.nextval, to_date('2012/04/17 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 3, 2);
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
 VALUES(customerbill_seq.nextval, to_date('2012/03/09 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 5, 3);
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
@@ -266,7 +285,7 @@ VALUES(4, 1237, 2, 5.00);
 INSERT INTO SpecialOrder(id, dateTime, storeID, staffID, customerID) 
 VALUES(specialorder_seq.nextval, to_date('2012/04/12 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 3, 1);
 INSERT INTO SpecialOrder(id, dateTime, storeID, staffID, customerID) 
-VALUES(specialorder_seq.nextval, to_date('2012/04/17 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 3, 2);
+VALUES(specialorder_seq.nextval, to_date('2012/04/17 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 3, 2);
 INSERT INTO SpecialOrder(id, dateTime, storeID, staffID, customerID) 
 VALUES(specialorder_seq.nextval, to_date('2012/03/09 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 5, 3);
 INSERT INTO SpecialOrder(id, dateTime, storeID, staffID, customerID) 
@@ -286,15 +305,15 @@ VALUES(4, 1237, 2, 5.00, 'sent');
 INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
 VALUES(vendorbill_seq.nextval, to_date('2012/02/05 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 1, 'mastercard', 'AE25S472');
 INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
-VALUES(vendorbill_seq.nextval, to_date('2012/03/25 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 4, 2, 'check', '23F138TY');
+VALUES(vendorbill_seq.nextval, to_date('2012/03/25 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 4, 2, 'check', '23F138TY');
 INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
-VALUES(vendorbill_seq.nextval, to_date('2012/06/02 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 2, 2, 'visa', 'BC9956HY');
+VALUES(vendorbill_seq.nextval, to_date('2012/06/02 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 2, 1, 'visa', 'BC9956HY');
 INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
 VALUES(vendorbill_seq.nextval, to_date('2012/01/10 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 2, 1, 'cash', 'E1WA2B42');
 
 -- VendorBillItems Prepop Data for Demo
 INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
-VALUES(1, 1234, 10, 725.00, 'open');
+VALUES(1, 1234, 10, 725.00, 'received');
 INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
 VALUES(2, 1235, 12, 650.00, 'received');
 INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 

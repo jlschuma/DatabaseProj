@@ -20,7 +20,7 @@ public class ShowAllVendorBillsByStores extends Command {
 		String sql = "SELECT  vendorID, v.name, storeID, status, sum(price * quantity) AS TotalBalance " +
 				"FROM VendorBill vb, VendorBillItems vi, Vendor v " +
 				"WHERE vi.vendorBillID = vb.id AND vb.vendorID = v.id AND DateTime > ? AND DateTime < ? " +
-				"GROUP BY vendorID, v.name, storeID, status";
+				"GROUP BY vendorID, v.name, storeID, status order by storeId,vendorId";
 		DatabaseManager.runPreparedStatement(sql,args,true);
 		
 	}
