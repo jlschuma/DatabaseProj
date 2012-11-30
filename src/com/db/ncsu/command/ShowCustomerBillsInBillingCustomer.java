@@ -14,12 +14,14 @@ public class ShowCustomerBillsInBillingCustomer extends Command {
 	@Override
 	public void run(CommandArgument[] args) {
 		//Select * from Staff
-		String sql = "Select datetime,merchandiseId,quantity,price "+ 
+		String sql = "Select datetime,merchandiseId,m.name,quantity,price "+ 
 				      "from CustomerBill cb, "+
 		"CustomerBillItems cbi, "+
-		"CustomerBillingCycle cbc  "+
+		"CustomerBillingCycle cbc, " +
+		"Merchandise m "+
 		"where cb.id = cbi.customerbillid  "+
-		"and cbc.id = cb.customerbillcycleid "+
+		"and cbc.id = cb.customerbillcycleid " +
+		"and cbi.merchandiseid = m.id "+
 		"and cbc.id = ? order by datetime";
 		
 		
