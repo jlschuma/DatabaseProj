@@ -206,7 +206,7 @@ VALUES(staff_seq.nextval, 1, 40000.00, '324-192-8765', 'Tina Fey', 36, 'F', 'M-U
 INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
 VALUES(staff_seq.nextval, 1, 30000.00, '129-430-3784', 'George Carlin', 71, 'M', 'S-Unit-01', 'Sales', '54 Purple road');
 INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
-VALUES(staff_seq.nextval, 2, 42000.00, '774-398-3421', 'Eddit Izzard', 50, 'M', 'M-Unit-01', 'Franchise Manager', '98 Jester Ct.');
+VALUES(staff_seq.nextval, 2, 42000.00, '774-398-3421', 'Eddie Izzard', 50, 'M', 'M-Unit-01', 'Franchise Manager', '98 Jester Ct.');
 INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
 VALUES(staff_seq.nextval, 2, 29000.00, '102-394-3243', 'Richard Pryor', 65, 'M', 'S-Unit-01', 'Sales', '34 Pinewood st.');
 INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
