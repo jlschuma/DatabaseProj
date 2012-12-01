@@ -265,7 +265,7 @@ VALUES(customerbillcycle_seq.nextval, 4, to_date('2012/08/24', 'yyyy/mm/dd'), to
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
 VALUES(customerbill_seq.nextval, to_date('2012/04/12 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 3, 1);
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
-VALUES(customerbill_seq.nextval, to_date('2012/04/17 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 3, 2);
+VALUES(customerbill_seq.nextval, to_date('2012/04/17 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 3, 2);
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
 VALUES(customerbill_seq.nextval, to_date('2012/03/09 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 5, 3);
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
@@ -285,7 +285,7 @@ VALUES(4, 1237, 2, 5.00);
 INSERT INTO SpecialOrder(id, dateTime, storeID, staffID, customerID) 
 VALUES(specialorder_seq.nextval, to_date('2012/04/12 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 3, 1);
 INSERT INTO SpecialOrder(id, dateTime, storeID, staffID, customerID) 
-VALUES(specialorder_seq.nextval, to_date('2012/04/17 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 3, 2);
+VALUES(specialorder_seq.nextval, to_date('2012/04/17 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 3, 2);
 INSERT INTO SpecialOrder(id, dateTime, storeID, staffID, customerID) 
 VALUES(specialorder_seq.nextval, to_date('2012/03/09 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 5, 3);
 INSERT INTO SpecialOrder(id, dateTime, storeID, staffID, customerID) 
