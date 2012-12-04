@@ -211,6 +211,12 @@ INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, de
 VALUES(staff_seq.nextval, 2, 29000.00, '102-394-3243', 'Richard Pryor', 65, 'M', 'S-Unit-01', 'Sales', '34 Pinewood st.');
 INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
 VALUES(staff_seq.nextval, 2, 25000.00, '888-321-5843', 'Sam Kinison', 38, 'M', 'S-Unit-02', 'Sales', '13 Oakland lane');
+INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
+VALUES(staff_seq.nextval, 1, 50000, '919-555-1216', 'Ting Yu', 22, 'M', 'M-Unit-01', 'Stocking', '915 Parners Way, Cary, NC');
+INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
+VALUES(staff_seq.nextval, 1, 30000, '919-555-1215', 'Chris Miller', 22, 'F', 'M-Unit-01', 'Manager', '914 Parners Way, Cary, NC');
+INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
+VALUES(staff_seq.nextval, 1, 10000, '919-555-1212', 'Eric Lumpkin', 22, 'M', 'M-Unit-01', 'Billing', '911 Parners Way, Cary, NC');
 
 -- StoreItem Prepop Data for Demo
 INSERT INTO StoreItem(storeID, merchandiseID, quantity, price)
