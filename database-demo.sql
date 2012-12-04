@@ -206,7 +206,7 @@ VALUES(staff_seq.nextval, 1, 40000.00, '324-192-8765', 'Tina Fey', 36, 'F', 'M-U
 INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
 VALUES(staff_seq.nextval, 1, 30000.00, '129-430-3784', 'George Carlin', 71, 'M', 'S-Unit-01', 'Sales', '54 Purple road');
 INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
-VALUES(staff_seq.nextval, 2, 42000.00, '774-398-3421', 'Eddit Izzard', 50, 'M', 'M-Unit-01', 'Franchise Manager', '98 Jester Ct.');
+VALUES(staff_seq.nextval, 2, 42000.00, '774-398-3421', 'Eddie Izzard', 50, 'M', 'M-Unit-01', 'Franchise Manager', '98 Jester Ct.');
 INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
 VALUES(staff_seq.nextval, 2, 29000.00, '102-394-3243', 'Richard Pryor', 65, 'M', 'S-Unit-01', 'Sales', '34 Pinewood st.');
 INSERT INTO Staff(id, storeID, salary, phoneNumber, name, age, gender, title, department, address)
@@ -271,7 +271,7 @@ VALUES(customerbillcycle_seq.nextval, 4, to_date('2012/08/24', 'yyyy/mm/dd'), to
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
 VALUES(customerbill_seq.nextval, to_date('2012/04/12 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 3, 1);
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
-VALUES(customerbill_seq.nextval, to_date('2012/04/17 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 3, 2);
+VALUES(customerbill_seq.nextval, to_date('2012/04/17 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 3, 2);
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
 VALUES(customerbill_seq.nextval, to_date('2012/03/09 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 5, 3);
 INSERT INTO CustomerBill(id, dateTime, storeID, staffID, customerBillCycleID) 
@@ -291,7 +291,7 @@ VALUES(4, 1237, 2, 5.00);
 INSERT INTO SpecialOrder(id, dateTime, storeID, staffID, customerID) 
 VALUES(specialorder_seq.nextval, to_date('2012/04/12 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 3, 1);
 INSERT INTO SpecialOrder(id, dateTime, storeID, staffID, customerID) 
-VALUES(specialorder_seq.nextval, to_date('2012/04/17 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 3, 2);
+VALUES(specialorder_seq.nextval, to_date('2012/04/17 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 3, 2);
 INSERT INTO SpecialOrder(id, dateTime, storeID, staffID, customerID) 
 VALUES(specialorder_seq.nextval, to_date('2012/03/09 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 5, 3);
 INSERT INTO SpecialOrder(id, dateTime, storeID, staffID, customerID) 

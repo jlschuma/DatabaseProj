@@ -1,5 +1,6 @@
 package com.db.database;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -13,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.FileHandler;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 //import java.util.regex.Pattern;
@@ -22,13 +24,13 @@ import com.db.ncsu.command.CommandArgument;
 
 public class DatabaseManager {
 	private static final String jdbcURL = "jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl";
+	private final static LogManager LM = LogManager.getLogManager();
 	private final static Logger LOGGER = Logger.getLogger("update_log");
-	static private FileHandler fh; 
 
 
 	// Put your oracle ID and password here
-	private static final String user = "jlschuma";
-	private static final String password = "test123";
+	private static final String user = "ctmille2";
+	private static final String password = "ctmpass";
 
 	// Create Static connection, so there will only ever be one
 	private static Connection connection = null;
@@ -45,11 +47,8 @@ public class DatabaseManager {
 	{
 		initialize();	
 		try{
-			int limit = 1000000; // 1MB
-			fh = new FileHandler("Logging.txt", limit, 1, true);
-			SimpleFormatter formatter = new SimpleFormatter();
-			fh.setFormatter(formatter);
-			LOGGER.addHandler(fh);
+			LM.readConfiguration();
+			LM.addLogger(LOGGER);
 
 		}catch (IOException e){
 			e.printStackTrace();
