@@ -26,10 +26,10 @@ public  class User {
 		stockingCommands = new Command[]{ new AddStoreItem(), new UpdateStoreMerchandise(), new CreateMerchandise(), new CreateVendor(),
 				new UpdateVendor(), new ReviewStoreInventory(), 
 				 new UpdateSpecialOrderItemStatus(), 
-				new UpdateVendorBillItemsStatus(), new ViewAllSpecialOrdersByType(), new InsertVendorBill(), new ShowVendorBills(), new ShowVendors(), new SendSpecialOrderToCustomer()};
+				new UpdateVendorBillItemsStatus(), new ViewAllSpecialOrdersByType(), new InsertVendorBill(), new ShowVendorBills(), new ShowVendors(), new SendSpecialOrderToCustomer(), new CheckMerchandiseAvailability()};
 	
 		managerCommands = new Command[]{ new CreateEmployee(), new UpdateEmployee(), new ShowEmployeesByStore(), new ShowAllCustomerBills(), new ShowAllVendorBills(), new ShowAllStaffBillsSpecialOrderVendorBills() };
-		franchiseCommands = new Command[]{ new CreateStore(),new ShowStore(), new CreateEmployee(), new ShowEmployees(), new ShowAllCustomerBillsByStore(), new ShowAllVendorBillsByStores(), new ShowAllStaffBillsSpecialOrderVendorBills()};
+		franchiseCommands = new Command[]{ new CreateStore(), new UpdateEmployee(),new ShowStore(), new CreateEmployee(), new ShowEmployees(), new ShowAllCustomerBillsByStore(), new ShowAllVendorBillsByStores(), new ShowAllStaffBillsSpecialOrderVendorBills()};
 
 	}
 	

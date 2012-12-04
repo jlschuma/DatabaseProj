@@ -311,11 +311,11 @@ VALUES(4, 1237, 2, 5.00, 'sent');
 INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
 VALUES(vendorbill_seq.nextval, to_date('2012/02/05 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 1, 1, 'mastercard', 'AE25S472');
 INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
-VALUES(vendorbill_seq.nextval, to_date('2012/03/25 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 4, 2, 'check', '23F138TY');
+VALUES(vendorbill_seq.nextval, to_date('2012/03/25 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 4, 2, 'check', '23F138TY');
 INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
-VALUES(vendorbill_seq.nextval, to_date('2012/06/02 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 2, 1, 'visa', 'BC9956HY');
+VALUES(vendorbill_seq.nextval, to_date('2012/06/02 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 2, 2, 'visa', 'BC9956HY');
 INSERT INTO VendorBill(id, dateTime, storeID, staffID, vendorID, paymentInformation, confirmationCode) 
-VALUES(vendorbill_seq.nextval, to_date('2012/01/10 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 2, 2, 1, 'cash', 'E1WA2B42');
+VALUES(vendorbill_seq.nextval, to_date('2012/01/10 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), 1, 2, 1, 'cash', 'E1WA2B42');
 
 -- VendorBillItems Prepop Data for Demo
 INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status) 
@@ -328,13 +328,13 @@ INSERT INTO VendorBillItems(vendorBillID, merchandiseID, quantity, price, status
 VALUES(4, 1237, 9, 5.00, 'received');
 
 INSERT INTO CustomerPayment(customerBillCycleID, staffID, paidDate, paymentInformation, confirmationCode)
-VALUES(1, 1, to_date('2012/04/21 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'mastercard 3332 3333 2222 3333', customer_confirmation_seq.nextval);
+VALUES(1, 3, to_date('2012/04/21 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'mastercard 3332 3333 2222 3333', customer_confirmation_seq.nextval);
 INSERT INTO CustomerPayment(customerBillCycleID, staffID, paidDate, paymentInformation, confirmationCode)
-VALUES(2, 2, to_date('2012/04/28 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'cash', customer_confirmation_seq.nextval);
+VALUES(2, 3, to_date('2012/04/28 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'cash', customer_confirmation_seq.nextval);
 INSERT INTO CustomerPayment(customerBillCycleID, staffID, paidDate, paymentInformation, confirmationCode)
-VALUES(3, 3, to_date('2012/03/23 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'check', customer_confirmation_seq.nextval);
+VALUES(3, 5, to_date('2012/03/23 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'check', customer_confirmation_seq.nextval);
 INSERT INTO CustomerPayment(customerBillCycleID, staffID, paidDate, paymentInformation, confirmationCode)
-VALUES(4, 4, to_date('2012/09/18 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'check', customer_confirmation_seq.nextval);
+VALUES(4, 6, to_date('2012/09/18 11:15:32', 'yyyy/mm/dd hh24:mi:ss'), 'check', customer_confirmation_seq.nextval);
 
 
 Commit;

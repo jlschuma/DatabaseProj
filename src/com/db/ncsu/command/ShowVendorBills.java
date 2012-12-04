@@ -5,7 +5,7 @@ import com.db.database.DatabaseManager;
 public class ShowVendorBills extends Command {
 	public CommandArgument[] getArguments() {
 		CommandArgument args[] = new CommandArgument[1];
-		args[0] = new CommandArgument("Status","String","Status (open or recieved)",true);
+		args[0] = new CommandArgument("Status","String","Status (open or received)",true);
 
 		return args;
 	}
